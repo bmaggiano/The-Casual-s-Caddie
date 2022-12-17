@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import Home from './pages/home'
 import About from './pages/about'
+import TourDistances from './pages/averageDistance'
 import Profile from './pages/profile'
 import {
   BrowserRouter as Router,
@@ -23,6 +24,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/TourDistances' element={<TourDistances />} />
           <Route path='/About' element={<About />} />
           <Route path='/Profile' element={<Profile />} />
         </Routes>

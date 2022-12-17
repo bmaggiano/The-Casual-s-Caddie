@@ -13,7 +13,7 @@ function Navbar() {
 
     useEffect(() => {
         setCurrentPage(location.pathname)
-    }, [location.pathname]);
+    });
 
     return (
         <>
@@ -34,6 +34,15 @@ function Navbar() {
                     className={currentPage === "/About" ? "nav-link active" : "nav-link"}
                 >
                 About
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link
+                    to={'/TourDistances'}
+                    onClick={() => setCurrentPage("TourDistances")}
+                    className={currentPage === "/TourDistances" ? "nav-link active" : "nav-link"}
+                >
+                TourDistances
                 </Link>
             </li>
             <li className="nav-item">
