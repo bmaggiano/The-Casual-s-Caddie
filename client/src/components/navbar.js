@@ -16,7 +16,7 @@ function Navbar() {
     });
 
     return (
-        <>
+        <div className="mx-5 my-2">
         <ul className="nav nav-pills nav-fill">
             <li className="nav-item">
                 <Link
@@ -55,7 +55,7 @@ function Navbar() {
                 </Link>
             </li>
         </ul>
-        </>
+        </div>
     )
 }
 
