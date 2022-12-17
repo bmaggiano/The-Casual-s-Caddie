@@ -28,6 +28,36 @@
   color: #61dafb;
 }
 
+.home-background-image {
+  background-image: url("./images/azgolf.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+}
+
+.nav-link {
+  color: gold;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: gold;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+ background-color: darkgreen !important;
+ color: gold !important;
+ border-right: 1px solid gold;
+ border-bottom: 1px solid gold;
+ border-left: 1px solid gold;
+ border-radius: 0px;
+}
+
+.nav-item {
+  background-color: darkgreen;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

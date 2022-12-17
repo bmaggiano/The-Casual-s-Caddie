@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import auth from '../utils/auth'
+import '../App.css'
 
 
 function Navbar() {
@@ -16,7 +17,7 @@ function Navbar() {
     });
 
     return (
-        <div className="mx-5 my-2">
+        <div>
         <ul className="nav nav-pills nav-fill">
             <li className="nav-item">
                 <Link
