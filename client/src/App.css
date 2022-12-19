@@ -58,6 +58,38 @@
   background-color: darkgreen;
 }
 
+.title {
+  color: white;
+}
+
+.loginContainer {
+  background-color: darkgreen;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: rgb(0, 0, 0) 0px 10px 20px -10px;
+}
+
+.signupContainer {
+  background: darkgreen;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: rgb(0, 0, 0) 0px 10px 20px -10px;
+}
+
+.descAppOne {
+  color: white;
+  background: linear-gradient(to right, darkgreen 50%, #087a06, gold);
+  border-radius: 5px;
+  box-shadow: rgb(0, 0, 0) 0px 10px 20px -10px;
+}
+
+.descAppTwo {
+  color: white;
+  background: linear-gradient(to right, darkgreen 50%, #087a06, gold);
+  border-radius: 5px;
+  box-shadow: rgb(0, 0, 0) 0px 10px 20px -10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
