@@ -16,6 +16,7 @@ import {
 // } from '@apollo/client';
 import Navbar from './components/navbar.js'
 import './App.css';
+// import "swiper/css/bundle";
 
 function App() {
   return (
