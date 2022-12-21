@@ -158,7 +158,7 @@
 .swiper-slide img {
   width: 50%;
   height: 50%;
-  /* object-fit: cover; */
+  object-fit: contain;
 }
 
 @keyframes App-logo-spin {

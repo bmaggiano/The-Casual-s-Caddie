@@ -27,7 +27,7 @@ export default function Carousel() {
         className="h-48 rounded-md"
       >
         <SwiperSlide>
-            <img src={toptracer} className="rounded-md"/>
+            <img src={toptracer} className="rounded-md w-fluid"/>
             <br/>
             <p className="text-sm mx-2">Hit 5 shots at any driving range with TopTracer to get an average distance for any given club.</p>
 
