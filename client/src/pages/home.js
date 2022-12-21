@@ -19,9 +19,9 @@ function Home() {
             />
             <div className="absolute inset-0 bg-green-600 mix-blend-multiply rounded-md" aria-hidden="true" />
           </div>
-          <div className="relative mx-auto max-w-7xl py-12 px-4 sm:py-32 sm:px-6 lg:px-8">
+          <div className="relative mx-auto flex flex-col py-12 max-w-7xl px-4 sm:py-12 sm:px-6 lg:px-8">
             <h1 className="title text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl text-center">The Casual’s Caddie</h1>
-            <p className="mt-6 max-w-3xl text-xl text-indigo-100 text-center">
+            <p className="mt-6 max-w-3xl text-xl tracking-tight text-indigo-100 text-center">
               Conveniently monitor and optimize your golf performance!
             </p>
           </div>
