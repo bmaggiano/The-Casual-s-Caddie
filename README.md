@@ -8,7 +8,9 @@ With The Casual's Caddie, users are able to log in/sign up, add clubs to their v
 
 ## Usage/Screenshots
 
-![casualcaddiehomepage](https://user-images.githubusercontent.com/103971233/208791930-3f56c870-dee4-4832-b9ec-374c282a2ad0.PNG)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/103971233/208791930-3f56c870-dee4-4832-b9ec-374c282a2ad0.PNG" alt="Sublime's custom image"/>
+</p>
 
 ## Credits
 
