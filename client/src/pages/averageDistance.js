@@ -1,10 +1,5 @@
 import {
-  ArrowPathIcon,
-  CloudArrowUpIcon,
-  CogIcon,
-  LockClosedIcon,
-  ServerIcon,
-  ShieldCheckIcon,
+  CheckCircleIcon,
 } from '@heroicons/react/24/outline'
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,62 +13,50 @@ const distances = [
   {
     name: 'Driver',
     description: '275 Yards',
-    icon: CloudArrowUpIcon,
   },
   {
     name: '3 Wood',
     description: '243 Yards',
-    icon: LockClosedIcon,
   },
   {
     name: '5 Wood',
     description: '230 Yards',
-    icon: ArrowPathIcon,
   },
   {
     name: 'Hybrid',
     description: '225 Yards',
-    icon: ShieldCheckIcon,
   },
   {
     name: '3 Iron',
     description: '212 Yards',
-    icon: CogIcon,
   },
   {
     name: '4 Iron',
     description: '203 Yards',
-    icon: ServerIcon,
   },
   {
     name: '5 Iron',
     description: '194 Yards',
-    icon: ServerIcon,
   },
   {
     name: '6 Iron',
     description: '183 Yards',
-    icon: ServerIcon,
   },
   {
     name: '7 Iron',
     description: '172 Yards',
-    icon: ServerIcon,
   },
   {
     name: '8 Iron',
     description: '160 Yards',
-    icon: ServerIcon,
   },
   {
     name: '9 Iron',
     description: '148 Yards',
-    icon: ServerIcon,
   },
   {
-    name: 'PW Iron',
+    name: 'PW',
     description: '136 Yards',
-    icon: ServerIcon,
   },
 ]
 
@@ -98,13 +81,14 @@ export default function averageDistance() {
           {distances.map((distance) => (
           <SwiperSlide>
             <div key={distance.name} className="pt-6">
-              <span className="inline-flex items-center justify-center rounded-xl bg-green-700 p-3 shadow-lg">
-                <distance.icon className="h-8 w-8 text-white" aria-hidden="true" />
+              <span className="text-white inline-flex items-center justify-center rounded-xl bg-green-700 p-3 shadow-lg">
+              {distance.name} &nbsp;<CheckCircleIcon className="h-8 w-8 text-white" aria-hidden="true" />
               </span>
-              <h3 className="mt-8 text-lg font-semibold leading-8 tracking-tight text-gray-900">
-                {distance.name}
+              <h3 className="pt-3 text-lg font-semibold leading-8 tracking-tight text-gray-900">
+                {distance.description} <br/> 
               </h3>
-              <p className="pb-3 leading-7 text-gray-600">{distance.description}</p>
+              <p>Carry</p>
+              <p className=' text-slate-300 text-xs'>*according to <a className="text-slate-300" target="_blank" href='https://blog.trackmangolf.com/trackman-average-tour-stats/'>https://blog.trackmangolf.com/trackman-average-tour-stats/</a></p>
             </div>
           </SwiperSlide>
           ))
