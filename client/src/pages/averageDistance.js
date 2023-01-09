@@ -17,32 +17,62 @@ import { Pagination } from "swiper";
 const distances = [
   {
     name: 'Driver',
-    description: '275 yards',
+    description: '275 Yards',
     icon: CloudArrowUpIcon,
   },
   {
-    name: 'Irons',
-    description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+    name: '3 Wood',
+    description: '243 Yards',
     icon: LockClosedIcon,
   },
   {
-    name: 'Simple Queues',
-    description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+    name: '5 Wood',
+    description: '230 Yards',
     icon: ArrowPathIcon,
   },
   {
-    name: 'Advanced Security',
-    description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+    name: 'Hybrid',
+    description: '225 Yards',
     icon: ShieldCheckIcon,
   },
   {
-    name: 'Powerful API',
-    description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+    name: '3 Iron',
+    description: '212 Yards',
     icon: CogIcon,
   },
   {
-    name: 'Database Backups',
-    description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+    name: '4 Iron',
+    description: '203 Yards',
+    icon: ServerIcon,
+  },
+  {
+    name: '5 Iron',
+    description: '194 Yards',
+    icon: ServerIcon,
+  },
+  {
+    name: '6 Iron',
+    description: '183 Yards',
+    icon: ServerIcon,
+  },
+  {
+    name: '7 Iron',
+    description: '172 Yards',
+    icon: ServerIcon,
+  },
+  {
+    name: '8 Iron',
+    description: '160 Yards',
+    icon: ServerIcon,
+  },
+  {
+    name: '9 Iron',
+    description: '148 Yards',
+    icon: ServerIcon,
+  },
+  {
+    name: 'PW Iron',
+    description: '136 Yards',
     icon: ServerIcon,
   },
 ]
@@ -55,11 +85,6 @@ export default function averageDistance() {
         <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           How far do your shots go compared to the local tour pros?
         </p>
-        <p className="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-          Theodore Roosevelt once said "Comparison is the thief of joy". It's very easy to see a tour player hit a driver 350+ yards and feel incompetent,
-          but the PGA tour is a very big organization and there's lots of players...
-        </p>
-
         <Swiper
           pagination={{
             dynamicBullets: false,
@@ -79,13 +104,18 @@ export default function averageDistance() {
               <h3 className="mt-8 text-lg font-semibold leading-8 tracking-tight text-gray-900">
                 {distance.name}
               </h3>
-              <p className="mt-5 text-base leading-7 text-gray-600">{distance.description}</p>
+              <p className="pb-3 leading-7 text-gray-600">{distance.description}</p>
             </div>
           </SwiperSlide>
           ))
           }
 
         </Swiper>
+        <p className="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+          Theodore Roosevelt once said "Comparison is the thief of joy". It's very easy to see a tour player hit a driver 350+ yards and feel incompetent,
+          but the PGA tour is a very big organization and there's lots of players...
+        </p>
+
           </div>
         </div>
   )
