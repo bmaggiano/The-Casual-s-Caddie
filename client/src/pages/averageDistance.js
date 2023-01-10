@@ -1,3 +1,5 @@
+import "../App.css";
+
 const distances = [
   {
     name: 'Driver',
@@ -55,19 +57,19 @@ export default function averageDistance() {
       <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
         <h2 className="text-lg font-bold text-green-700">Average Tour Pro Distances</h2>
         <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          How far do your shots go compared to the local tour pros?
+          How far do your shots go compared to the pros?
         </p>
         <div className="-mx-4 mt-10 ring-1 ring-gray-300 sm:-mx-6 md:mx-0 md:rounded-lg rounded-lg">
-        <table className='min-w-full divide-y divide-gray-300'>
+        <table className='tourProsTable min-w-full divide-y divide-gray-300'>
           <thead>
-            <tr>
-              <th scope="col" className="py-3.5 pl-4 pr-3 text-lg font-semibold text-gray-900 sm:pl-6">Club</th>
+            <tr className="bg-black">
+              <th scope="col" className="py-3.5 pl-4 pr-3 text-lg font-semibold text-white sm:pl-6">Club</th>
               <th scope="col"
-                className="px-3 py-3.5 text-lg font-semibold text-gray-900 lg:table-cell">Carry</th>
+                className="px-3 py-3.5 text-lg font-semibold text-white lg:table-cell">Carry</th>
             </tr>
           </thead>
           {distances.map((distance) => (
-          <tbody>
+          <tbody className="odd:bg-gray-50">
             <tr>
               <td className='relative py-2 pl-4 sm:pl-6 pr-3 text-md'>
                 {distance.name}
@@ -84,7 +86,7 @@ export default function averageDistance() {
         <p className=' text-slate-300 text-xs'>*according to <a className="text-slate-300" target="_blank" href='https://blog.trackmangolf.com/trackman-average-tour-stats/'>https://blog.trackmangolf.com/trackman-average-tour-stats/</a></p>
         <p className="mx-auto mt-5 max-w-prose text-xl text-gray-500">
           Theodore Roosevelt once said "Comparison is the thief of joy". It's very easy to see a tour player hit a driver 350+ yards and feel incompetent,
-          but the PGA tour is a very big organization and there's lots of players...
+          but the PGA tour is a very big organization and there's lots of players... You're not that far off!
         </p>
 
           </div>
