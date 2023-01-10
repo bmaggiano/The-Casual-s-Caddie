@@ -1,14 +1,3 @@
-import {
-  CheckCircleIcon,
-} from '@heroicons/react/24/outline'
-
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "../App.css";
-
-// import required modules
-import { Pagination } from "swiper";
-
 const distances = [
   {
     name: 'Driver',
@@ -68,33 +57,31 @@ export default function averageDistance() {
         <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           How far do your shots go compared to the local tour pros?
         </p>
-        <Swiper
-          pagination={{
-            dynamicBullets: false,
-          }}
-          modules={[Pagination]}
-          style={{
-            "--swiper-pagination-color": "darkgreen"
-          }}
-          className="py-3 rounded-md"
-        >
+        <div className="-mx-4 mt-10 ring-1 ring-gray-300 sm:-mx-6 md:mx-0 md:rounded-lg rounded-lg">
+        <table className='min-w-full divide-y divide-gray-300'>
+          <thead>
+            <tr>
+              <th scope="col" className="py-3.5 pl-4 pr-3 text-lg font-semibold text-gray-900 sm:pl-6">Club</th>
+              <th scope="col"
+                className="px-3 py-3.5 text-lg font-semibold text-gray-900 lg:table-cell">Carry</th>
+            </tr>
+          </thead>
           {distances.map((distance) => (
-          <SwiperSlide>
-            <div key={distance.name} className="pt-6">
-              <span className="text-white inline-flex items-center justify-center rounded-xl bg-green-700 p-3 shadow-lg">
-              {distance.name} &nbsp;<CheckCircleIcon className="h-8 w-8 text-white" aria-hidden="true" />
-              </span>
-              <h3 className="pt-3 text-lg font-semibold leading-8 tracking-tight text-gray-900">
-                {distance.description} <br/> 
-              </h3>
-              <p>Carry</p>
-              <p className=' text-slate-300 text-xs'>*according to <a className="text-slate-300" target="_blank" href='https://blog.trackmangolf.com/trackman-average-tour-stats/'>https://blog.trackmangolf.com/trackman-average-tour-stats/</a></p>
-            </div>
-          </SwiperSlide>
+          <tbody>
+            <tr>
+              <td className='relative py-2 pl-4 sm:pl-6 pr-3 text-md'>
+                {distance.name}
+              </td>
+              <td className='relative py-2 pl-4 sm:pl-6 pr-3 text-md'
+                  >{distance.description}</td>
+            </tr>
+          </tbody>
           ))
-          }
-
-        </Swiper>
+        }
+        </table>
+        </div>
+        <br/>
+        <p className=' text-slate-300 text-xs'>*according to <a className="text-slate-300" target="_blank" href='https://blog.trackmangolf.com/trackman-average-tour-stats/'>https://blog.trackmangolf.com/trackman-average-tour-stats/</a></p>
         <p className="mx-auto mt-5 max-w-prose text-xl text-gray-500">
           Theodore Roosevelt once said "Comparison is the thief of joy". It's very easy to see a tour player hit a driver 350+ yards and feel incompetent,
           but the PGA tour is a very big organization and there's lots of players...
