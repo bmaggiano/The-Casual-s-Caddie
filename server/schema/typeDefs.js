@@ -10,7 +10,16 @@ const typeDefs = gql `
         _id: ID
         username: String
         email: String
-        clubs: [club]
+        clubs: [Club]
+    }
+
+    type Club {
+        _id: ID
+        clubName: String
+        clubAverage: String
+        clubHigh: String
+        clubLow: String
+        dateTested: String
     }
 
     type Auth {
@@ -24,4 +33,6 @@ const typeDefs = gql `
         addDistance(_id: ID): User
         removeDistance(_id: ID): User
     }
-`
+`;
+
+module.exports = typeDefs;

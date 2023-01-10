@@ -84,6 +84,13 @@ function Navbar() {
                         <li>
                             <a href="/Profile">Profile</a>
                         </li>
+                        {auth.loggedIn() ? (
+                            <li>
+                                <a onClick={auth.logout} href="/">Logout</a>
+                            </li>
+                        ) : (
+                            <li></li>
+                        )}
                     </ul>
                 </nav>
             </div>

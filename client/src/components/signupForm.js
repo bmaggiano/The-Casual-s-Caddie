@@ -1,32 +1,64 @@
 import { useState } from "react"
+import { useMutation } from '@apollo/client'
+import { ADD_USER } from '../utils/mutations';
+import auth from '../utils/auth';
 
 function SignupForm() {
-    const [username, setUsername] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [addUser, { error, data }] = useMutation(ADD_USER);
+    const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleSignupSubmit = async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+
+    try {
+      const { data } = await addUser({
+        variables: {...userFormData}
+      });
+
+      auth.login(data.addUser.token);
+    } catch (err) {
+      console.error(err);
+    }
+
+    setUserFormData({
+      username: '',
+      email: '',
+      password: '',
+    });
+  };
 
     return (
         <div>
-            <form>
-                <p className="text-white"> email: </p>
+            <form onSubmit={handleSignupSubmit}>
+                <p className=""> email: </p>
                 <input
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    name="email"
+                    type="email"
+                    value={userFormData.email}
+                    onChange={handleInputChange}
                 />
 
-                <p className="text-white"> username: </p>
+                <p className=""> username: </p>
                 <input
+                    name="username"
                     type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={userFormData.username}
+                    onChange={handleInputChange}
                 />
 
-                <p className="text-white"> password: </p>
+                <p className=""> password: </p>
                 <input
-                    type="text"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
+                    type="password"
+                    value={userFormData.password}
+                    onChange={handleInputChange}
                 />
                 <br />
                 <br />
