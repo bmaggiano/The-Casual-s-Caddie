@@ -4,7 +4,7 @@ import { ADD_USER } from '../utils/mutations';
 import auth from '../utils/auth';
 
 function SignupForm() {
-    const [addUser, { error, data }] = useMutation(ADD_USER);
+    const [addUser, { error }] = useMutation(ADD_USER);
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
 
   const handleInputChange = (event) => {
@@ -14,8 +14,6 @@ function SignupForm() {
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
-
-    const form = event.currentTarget;
 
     try {
       const { data } = await addUser({
@@ -64,6 +62,7 @@ function SignupForm() {
                 <br />
                 <button className="loginBtn"
                     type="submit"
+                    
                     variant="success"
                 > Signup
                 </button>
