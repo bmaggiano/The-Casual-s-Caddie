@@ -6,16 +6,27 @@ export const QUERY_ME = gql `
             _id
             username
             email
-            tournaments {
-                _id
-                tournamentName
-                tournamentDate
-                tournamentDescription
-                tournamentImage
-                course
-                tournamentPrice
-                link
-            }
+                clubs {
+                    _id
+                    clubName
+                    clubAverage
+                    clubHigh
+                    clubLow
+                    dateTested
+                }
+        }
+    }
+`
+
+export const QUERY_CLUBS = gql`
+    {
+        clubs {
+            _id
+            clubName
+            clubAverage
+            clubHigh
+            clubLow
+            dateTested
         }
     }
 `
