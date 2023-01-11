@@ -67,6 +67,13 @@ function Navbar() {
                                 <li className="border-b border-gray-400 my-8 uppercase">
                                     <a href="/Profile">Profile</a>
                                 </li>
+                                {auth.loggedIn() ? (
+                            <li className="border-b border-gray-400 my-8 uppercase">
+                                <a onClick={auth.logout} href="/">Logout</a>
+                            </li>
+                        ) : (
+                            <li></li>
+                        )}
                             </ul>
                         </div>
                     </section>

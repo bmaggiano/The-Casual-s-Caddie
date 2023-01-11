@@ -4,7 +4,7 @@ import About from './pages/about'
 import TourDistances from './pages/averageDistance'
 import Profile from './pages/profile'
 import Signup from './components/signupForm'
-import { setContext } from '@apollo/client/link/context';import home from './pages/home';
+import { setContext } from '@apollo/client/link/context';
 import {
   BrowserRouter as Router,
   Route,
@@ -14,7 +14,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
+  createHttpLink
 } from '@apollo/client';
 import Navbar from './components/navbar.js'
 import './App.css';
