@@ -33,53 +33,68 @@ function Input() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="num1">Number 1:</label>
-                <input
-                    type="number"
-                    name="num1"
-                    value={numbers.num1}
-                    onChange={handleChange}
-                />
-                <br />
-                <label htmlFor="num2">Number 2:</label>
-                <input
-                    type="number"
-                    name="num2"
-                    value={numbers.num2}
-                    onChange={handleChange}
-                />
-                <br />
-                <label htmlFor="num3">Number 3:</label>
-                <input
-                    type="number"
-                    name="num3"
-                    value={numbers.num3}
-                    onChange={handleChange}
-                />
-                <br />
-                <label htmlFor="num4">Number 4:</label>
-                <input
-                    type="number"
-                    name="num4"
-                    value={numbers.num4}
-                    onChange={handleChange}
-                />
-                <br />
-                <label htmlFor="num5">Number 5:</label>
-                <input
-                    type="number"
-                    name="num5"
-                    value={numbers.num5}
-                    onChange={handleChange}
-                />
-                <br />
-                <button type="submit">Submit</button>
-                <br />
-                <p>Minimum: {result.min}</p>
-                <p>Maximum: {result.max}</p>
-                <p>Average: {result.avg}</p>
-            </form>
+            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                <div className="text-center bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="num1" className="text-sm font-medium text-gray-700">Shot 1:</label>
+                        <input
+                            type="number"
+                            name="num1"
+                            value={numbers.num1}
+                            onChange={handleChange}
+                            className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        />
+                        <br />
+                        <label htmlFor="num2" className="text-sm font-medium text-gray-700">Shot 2:</label>
+                        <input
+                            type="number"
+                            name="num2"
+                            value={numbers.num2}
+                            onChange={handleChange}
+                            className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+
+                        />
+                        <br />
+                        <label htmlFor="num3" className="text-sm font-medium text-gray-700">Shot 3:</label>
+                        <input
+                            type="number"
+                            name="num3"
+                            value={numbers.num3}
+                            onChange={handleChange}
+                            className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+
+                        />
+                        <br />
+                        <label htmlFor="num4" className="text-sm font-medium text-gray-700">Shot 4:</label>
+                        <input
+                            type="number"
+                            name="num4"
+                            value={numbers.num4}
+                            onChange={handleChange}
+                            className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+
+                        />
+                        <br />
+                        <label htmlFor="num5" className="text-sm font-medium text-gray-700">Shot 5:</label>
+                        <input
+                            type="number"
+                            name="num5"
+                            value={numbers.num5}
+                            onChange={handleChange}
+                            className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+
+                        />
+                        <br />
+                        <button type="submit"
+                            className="flex w-full justify-center rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                        >Submit</button>
+                        <br />
+                        <p>Minimum: {result.min}</p>
+                        <p>Maximum: {result.max}</p>
+                        <p>Average: {result.avg}</p>
+                    </form>
+                </div>
+            </div>
         </>
     );
 }
