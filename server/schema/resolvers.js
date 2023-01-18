@@ -63,7 +63,7 @@ const resolvers = {
             if (context.user) {
                 const updatedDistance = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    { $addToSet: {clubs: args.clubAverage}},
+                    { $addToSet: {clubs: {clubAverage: args.clubAverage},},},
                     { new: true, runValidators: true},
                 )
                 return updatedDistance

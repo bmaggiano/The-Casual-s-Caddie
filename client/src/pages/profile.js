@@ -24,13 +24,15 @@ const Profile = () => {
       </>
     )
   }
+
+  
   const clubData = clubresults.data?.clubs
   const myClubs = data?.me.clubs
   const filteredClubs = clubData.filter((club) => !myClubs.includes(club))
   console.log(myClubs)
   const meData = data?.me
   console.log(filteredClubs)
-
+  
   const handleAddClub = async(clubToSave) => {
     const token = Auth.loggedIn() ? Auth.getToken : null;
 
