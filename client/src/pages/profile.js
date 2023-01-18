@@ -1,28 +1,35 @@
 import React from 'react'
 import Input from '../components/input'
 import { useQuery } from "@apollo/client"
-import { QUERY_CLUBS } from '../utils/queries'
+import { QUERY_ME, QUERY_CLUBS } from "../utils/queries"
 
-function Profile() {
+const Profile = () => {
 
-  const { loading, data } = useQuery(QUERY_CLUBS)
+  const { loading, data } = useQuery(QUERY_ME)
+  // const { loading, data } = useQuery(QUERY_CLUBS)
 
   if (loading) {
-    return <h2>LOADING...</h2>
+    return <h2>Loading User Data...</h2>
   }
+  const meData = data?.me
+  
+  // if (loading) {
+  //   return <h2>LOADING...</h2>
+  // }
 
-  const clubData = data.clubs || []
+  // const clubData = data.clubs || []
 
 
-  console.log(clubData)
+  // console.log(clubData)
   return (
     <div>
       <h1>Profile</h1>
-      {clubData.map((club) => {
+      <h2>Welcome back {meData.username}</h2>
+      {/* {clubData.map((club) => {
         return (
           <p>{club.clubName}</p>
         )
-      })}
+      })} */}
       <Input/>
     </div>
   )
