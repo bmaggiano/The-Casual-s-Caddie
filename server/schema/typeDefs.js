@@ -30,8 +30,9 @@ const typeDefs = gql `
     type Mutation {
         loginUser(email: String!, password: String!): Auth
         addUser(username: String, email: String, password: String): Auth
-        addDistance(_id: ID): User
-        removeDistance(_id: ID): User
+        addDistance(_id: ID, clubAverage: String): User
+        addClub(_id: ID): User
+        removeClub(_id: ID): User
     }
 `;
 

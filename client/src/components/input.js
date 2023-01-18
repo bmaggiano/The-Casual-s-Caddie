@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
+import { useMutation } from '@apollo/client';
+import { ADD_DISTANCE } from '../utils/mutations';
+import Auth from '../utils/auth'
+
 
 function Input() {
+
+    const [ addDistance ] = useMutation(ADD_DISTANCE)
+
     const [numbers, setNumbers] = useState({
         num1: "",
         num2: "",
@@ -30,6 +37,24 @@ function Input() {
         const avg = sum / numArr.length;
         setResult({ min, max, avg });
     };
+
+    const handleAddDistance = async(distanceToSave) => {
+        const token = Auth.loggedIn() ? Auth.getToken : null;
+    
+        if (!token) {
+          return false;
+        }
+    
+        try {
+          const response = await addDistance({
+            variables: {
+                _id: distanceToSave},
+          })
+          window.location.reload();
+        } catch (err) {
+          console.error(err)
+        }
+      }
 
     return (
         <>
@@ -86,6 +111,7 @@ function Input() {
                         />
                         <br />
                         <button type="submit"
+                            onClick={() => handleAddDistance(result.avg)}
                             className="flex w-full justify-center rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                         >Submit</button>
                         <br />

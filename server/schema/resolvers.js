@@ -37,27 +37,38 @@ const resolvers = {
             const token = signToken(user)
             return { token, user };
         },
-        addDistance: async (parent, args, context) => {
+        addClub: async (parent, args, context) => {
            if (context.user) {
-            const updatedDistance = await User.findOneAndUpdate(
+            const updatedClub = await User.findOneAndUpdate(
                 {_id: context.user._id},
                 { $addToSet: { clubs: args._id }},
                 { new: true, runValidators: true },
             )
-            return updatedDistance
+            return updatedClub
            } 
            throw new AuthenticationError('You need to be logged in to change club distances')
         },
-        removeDistance: async (parent, args, context) => {
+        removeClub: async (parent, args, context) => {
             if (context.user) {
-                const updatedDistance = await User.findOneAndUpdate(
+                const updatedClub = await User.findOneAndUpdate(
                     {_id: context.user._id},
                     { $pull: { clubs: args._id }},
                     { new: true, runValidators: true },
                 )
-                return updatedDistance
+                return updatedClub
                } 
                throw new AuthenticationError('You need to be logged in to change club distances')
+        },
+        addDistance: async (parent, args, context) => {
+            if (context.user) {
+                const updatedDistance = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    { $addToSet: {clubs: args.clubAverage}},
+                    { new: true, runValidators: true},
+                )
+                return updatedDistance
+            }
+            throw new AuthenticationError('You need to be logged in to change club distances')
         }
     }
 }
