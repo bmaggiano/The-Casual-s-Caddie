@@ -8,6 +8,7 @@ export const QUERY_ME = gql`
             email
             clubs {
                     _id
+                    clubId
                     clubName
                     clubAverage
                     clubHigh
@@ -22,6 +23,7 @@ export const QUERY_CLUBS = gql`
     {
         clubs {
             _id
+            clubId
             clubName
             clubAverage
             clubHigh

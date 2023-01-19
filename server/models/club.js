@@ -2,17 +2,20 @@ const { Schema, model } = require('mongoose');
 
 
 const clubSchema = new Schema({
+    clubId: {
+        type: Number 
+    },
     clubName: {
         type: String
     },
     clubAverage: {
-        type: String
+        type: Number
     },
     clubHigh: {
-        type: String
+        type: Number
     },
     clubLow: {
-        type: String
+        type: Number
     },
     dateTested: {
         type: Date,

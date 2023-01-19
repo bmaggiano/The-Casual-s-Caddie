@@ -1,38 +1,50 @@
 [
     {
+        "clubId": 0,
         "clubName": "Driver"
     },
     {
+        "clubId": 1,
         "clubName": "3 Wood"
     },
     {
+        "clubId": 2,
         "clubName": "5 Wood"
     },
     {
+        "clubId": 3,
         "clubName": "Hybrid"
     },
     {
+        "clubId": 4,
         "clubName": "3 Iron"
     },
     {
+        "clubId": 5,
         "clubName": "4 Iron"
     },
     {
+        "clubId": 6,
         "clubName": "5 Iron"
     },
     {
+        "clubId": 7,
         "clubName": "6 Iron"
     },
     {
+        "clubId": 8,
         "clubName": "7 Iron"
     },
     {
+        "clubId": 9,
         "clubName": "8 Iron"
     },
     {
+        "clubId": 10,
         "clubName": "9 Iron"
     },
     {
+        "clubId": 11,
         "clubName": "PW"
     }
 ]
