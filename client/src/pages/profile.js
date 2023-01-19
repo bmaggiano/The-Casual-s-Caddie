@@ -5,6 +5,7 @@ import { useQuery, useMutation } from "@apollo/client"
 import { QUERY_ME, QUERY_CLUBS } from "../utils/queries"
 import { ADD_CLUB, REMOVE_CLUB } from '../utils/mutations'
 import Auth from '../utils/auth'
+import {useNavigate} from "react-router-dom"
 
 const Profile = () => {
 
@@ -12,6 +13,11 @@ const Profile = () => {
   const { loading, data } = useQuery(QUERY_ME)
   const [ removeClub ] = useMutation(REMOVE_CLUB)
   const [ addClub, { error } ] = useMutation(ADD_CLUB)
+
+  const navigate = useNavigate()
+  const refreshPage = () => {
+    navigate(0)
+  }
 
   if (loading) {
     return <h2>Loading User Data...</h2>
@@ -28,10 +34,10 @@ const Profile = () => {
   
   const clubData = clubresults.data?.clubs
   const myClubs = data?.me.clubs
-  const filteredClubs = clubData.filter((club) => !myClubs.includes(club))
+  // const filteredClubs = clubData.filter((club) => !myClubs.includes(club))
   console.log(myClubs)
   const meData = data?.me
-  console.log(filteredClubs)
+  // console.log(filteredClubs)
   
   const handleAddClub = async(clubToSave) => {
     const token = Auth.loggedIn() ? Auth.getToken : null;
@@ -44,7 +50,7 @@ const Profile = () => {
       const response = await addClub({
         variables: {_id: clubToSave},
       })
-      window.location.reload();
+      // refreshPage()
     } catch (err) {
       console.error(err)
     }
@@ -61,7 +67,7 @@ const Profile = () => {
       const response = await removeClub({
         variables: {_id: clubToRemove},
       })
-      window.location.reload();
+      // refreshPage()
     } catch (err) {
       console.error(err)
     }
@@ -83,13 +89,14 @@ const Profile = () => {
            </div>
         )
       })}
-        {/* <div>
+      {/* TEST FLITER */}
+        <div>
         {clubData.filter(club => !meData.clubs.includes(club.clubName)).map(filteredName => (
           <li>
             {filteredName.clubName}
           </li>
         ))}
-      </div> */}
+      </div>
       <br/>
       <h2 className='text-center'>Click to add clubs to your bag</h2>
       {clubData.map((club) => {
