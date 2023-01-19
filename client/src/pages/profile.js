@@ -93,7 +93,7 @@ const Profile = () => {
         <div>
         {clubData.filter(club => !meData.clubs.includes(club.clubName)).map(filteredName => (
           <li>
-            {filteredName.clubName}
+            {filteredName.clubName} {filteredName.clubId}
           </li>
         ))}
       </div>
@@ -105,7 +105,7 @@ const Profile = () => {
           <button 
           onClick={() => handleAddClub(club._id)}
           className="mx-2 rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-           key={club._id}>{club.clubName}</button>
+           key={club._id}>{club.clubName} {club.clubAverage}</button>
            </div>
         )
       })}
