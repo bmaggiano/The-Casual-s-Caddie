@@ -93,7 +93,7 @@ const Profile = () => {
         <div>
         {clubData.filter(club => !meData.clubs.includes(club.clubName)).map(filteredName => (
           <li>
-            {filteredName.clubName} {filteredName.clubId}
+            {filteredName.clubName}
           </li>
         ))}
       </div>

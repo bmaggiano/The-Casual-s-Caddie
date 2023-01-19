@@ -2,9 +2,6 @@ const { Schema, model } = require('mongoose');
 
 
 const clubSchema = new Schema({
-    clubId: {
-        type: Number 
-    },
     clubName: {
         type: String
     },
