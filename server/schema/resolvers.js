@@ -74,11 +74,11 @@ const resolvers = {
         // }
         addDistance: async (parent, args, context) => {
             if (context.user) {
-                const updatedDistance = await Club.findOneAndUpdate(
-                    { clubId: 0 },
-                    { clubAverage: args.clubAverage},
+                const updatedDistance = await User.findOneAndUpdate(
+                    { _id: context.user._id, "clubs.clubId": 0 },
+                    { $set: { "clubs.$.clubAverage": args.clubAverage}},
                     { new: true, runValidators: true},
-                )
+                    )
                 return updatedDistance
             }
             throw new AuthenticationError('You need to be logged in to change club distances')
