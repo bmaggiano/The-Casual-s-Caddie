@@ -90,16 +90,16 @@ const Profile = () => {
         )
       })}
       {/* TEST FLITER */}
-        <div>
+        {/* <div>
         {clubData.filter(club => !meData.clubs.includes(club.clubName)).map(filteredName => (
           <li>
             {filteredName.clubName}
           </li>
         ))}
-      </div>
+      </div> */}
       <br/>
       <h2 className='text-center'>Click to add clubs to your bag</h2>
-      {clubData.map((club) => {
+      {/* {clubData.map((club) => {
         return (
           <div className='justify-center flex'>
           <button 
@@ -108,7 +108,7 @@ const Profile = () => {
            key={club._id}>{club.clubName} {club.clubAverage}</button>
            </div>
         )
-      })}
+      })} */}
       <Input/>
     </div>
   )

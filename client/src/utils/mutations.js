@@ -10,7 +10,7 @@ export const ADD_USER = gql`
                 email
                 clubs {
                     _id
-
+                    clubId
                     clubName
                     clubAverage
                     clubHigh
@@ -32,7 +32,7 @@ export const LOGIN_USER = gql`
                 email
                 clubs {
                     _id
-
+                    clubId
                     clubName
                     clubAverage
                     clubHigh
@@ -45,13 +45,14 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_CLUB = gql`
-    mutation addClub($_id: ID) {
-        addClub(_id: $_id){
+    mutation addClub($clubName: String) {
+        addClub(clubName: $clubName){
             _id
             username
             email
             clubs {
                 _id
+                clubId
                     clubName
                     clubAverage
                     clubHigh
@@ -70,6 +71,7 @@ export const REMOVE_CLUB = gql`
             email
             clubs {
                 _id
+                clubId
                     clubName
                     clubAverage
                     clubHigh
@@ -88,6 +90,7 @@ export const ADD_DISTANCE = gql`
             email
             clubs {
                 _id
+                clubId
                 clubName
                 clubAverage
                 clubHigh

@@ -1,6 +1,8 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const { Club } = require('../models')
+const Club   = require('./club')
+
+const clubSchema = require('./club')
 
 const userSchema = new Schema({
     username: {
@@ -18,7 +20,7 @@ const userSchema = new Schema({
         required: true,
         minlength: 8,
     },
-    clubs: [{type: Schema.Types.ObjectId, ref: "Club"}]
+    clubs: [Club.schema]
 },
 {
     toJSON: {

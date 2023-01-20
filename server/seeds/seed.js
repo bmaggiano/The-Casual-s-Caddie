@@ -1,16 +1,17 @@
-const db = require('../config/connection')
-const { User, Club } = require('../models/index')
-const clubSeed = require('./clubSeed.json')
+//ONLY NEEDED FOR ROUTE THAT HAD CLUB AS A MODEL 
+// const db = require('../config/connection')
+// const { User, Club } = require('../models/index')
+// const clubSeed = require('./clubSeed.json')
 
-db.once('open', async () => {
-    try {
-        await Club.deleteMany({});
+// db.once('open', async () => {
+//     try {
+//         await Club.deleteMany({});
 
-        await Club.create(clubSeed)
-    } catch (err) {
-        console.error(err)
-        process.exit(1)
-    }
-    console.log('seed success!')
-    process.exit(0)
-})
+//         await Club.create(clubSeed)
+//     } catch (err) {
+//         console.error(err)
+//         process.exit(1)
+//     }
+//     console.log('seed success!')
+//     process.exit(0)
+// })
