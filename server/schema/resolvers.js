@@ -57,7 +57,8 @@ const resolvers = {
             if (context.user) {
                 const updatedClub = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    { $pull: { clubs: args._id }},
+                    // for some reason "args" works but "args._id" doesn't
+                    { $pull: { clubs: args }},
                     { new: true, runValidators: true },
                 )
                 return updatedClub
@@ -79,7 +80,7 @@ const resolvers = {
         addDistance: async (parent, args, context) => {
             if (context.user) {
                 const updatedDistance = await User.findOneAndUpdate(
-                    { _id: context.user._id, "clubs._id": "63c9d8a6c873212b70f6a1d8"},
+                    { _id: context.user._id, "clubs._id": args._id},
                     { $set: { "clubs.$.clubAverage": args.clubAverage}},
                     { new: true, runValidators: true},
                     )
