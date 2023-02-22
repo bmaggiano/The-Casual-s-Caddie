@@ -6,6 +6,7 @@ import { QUERY_ME, QUERY_CLUBS } from "../utils/queries"
 import { ADD_CLUB, REMOVE_CLUB } from '../utils/mutations'
 import Auth from '../utils/auth'
 import {useNavigate} from "react-router-dom"
+import UserDistanceTable from '../components/userDistanceTable'
 
 const Profile = () => {
 
@@ -76,6 +77,7 @@ const Profile = () => {
   return (
     <div>
       <h2 className='text-center'>Welcome back {meData.username}</h2>
+      <UserDistanceTable/>
       <h2 className='text-center'>{meData.clubs.length 
       ? `you currently have ${meData.clubs.length} ${meData.clubs.length === 1 ? 'club' : 'clubs'} in your bag`
       : `You have no clubs in your bag`}</h2>
