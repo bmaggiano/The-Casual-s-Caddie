@@ -1,12 +1,34 @@
 import React from 'react'
 import  { useQuery }  from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
+import { useMutation } from '@apollo/client'
+import { REMOVE_CLUB } from '../utils/mutations'
+import Auth from '../utils/auth'
 
 
 function UserDistanceTable() {
 
     const { loading, data } = useQuery(QUERY_ME)
+    const [ removeClub ] = useMutation(REMOVE_CLUB)
 
+    
+    const handleRemoveClub = async(clubToRemove) => {
+        const token = Auth.loggedIn() ? Auth.getToken : null;
+    
+        if (!token) {
+            return false;
+        }
+        
+        try {
+            const response = await removeClub({
+                variables: {_id: clubToRemove},
+          })
+          // refreshPage()
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    
     if (loading) {
         return <h2>Loading User Data...</h2>
       }
@@ -18,8 +40,6 @@ function UserDistanceTable() {
       <div className="px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-        </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
         </div>
       </div>
       <div className="mt-8 flow-root">
@@ -66,9 +86,13 @@ function UserDistanceTable() {
                 hour12: true
             })}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-6 text-right text-sm font-medium sm:pr-3">
-                      <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                      <button><a href="#" className="text-green-600 hover:text-green-700">
                         Edit<span className="sr-only">, {table.clubName}</span>
-                      </a>
+                      </a></button>
+                      <button 
+                        onClick={() => handleRemoveClub(table._id)}
+                        className="mx-2 rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                        key={table._id}>Delete</button>
                     </td>
                   </tr>
                 ))}
