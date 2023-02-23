@@ -134,9 +134,9 @@ function Input() {
                             className="flex w-full justify-center rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                         >Calculate</button>
                         <br />
-                        <p>Minimum: {result.min}</p>
-                        <p>Maximum: {result.max}</p>
-                        <p>Average: {result.avg}</p>
+                        <p>Club Low: {result.min}</p>
+                        <p>Club High: {result.max}</p>
+                        <p>Club Average: {result.avg}</p>
                     </form>
                 </div>
                 {showButton && (

@@ -7,7 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/css/pagination";
 import slide2 from '../images/slide2.png'
 import toptracer from '../images/tracer.webp'
+import slide6 from '../images/slide6.png'
 import slide3 from '../images/slide3.png'
+import slide5 from '../images/slide5.png'
 import slide1 from '../images/slide1.png'
 import slide4 from '../images/slide4.png'
 import golfbag from '../images/golfbag.jpg'
@@ -49,12 +51,12 @@ export default function Carousel() {
             <p className="text-sm mx-2">Select the club that you want to calibrate or recalibrate, then record the distances from your 5 swings.</p>
         </SwiperSlide>
         <SwiperSlide>
-        <img src={slide4} className="rounded-md w-fluid"/>
+        <img src={slide5} className="rounded-md w-fluid"/>
             <h5 className="font-bold pt-2">Step 5: </h5>
             <p className="text-sm mx-2">Click the "Calculate" button to get a low, high, and average distance. Then click "Update Club" to have those stats saved to your profile.</p>
         </SwiperSlide>
         <SwiperSlide>
-        <img src={slide4} className="rounded-md w-fluid"/>
+        <img src={slide6} className="rounded-md w-fluid"/>
             <h5 className="font-bold pt-2">Step 6: </h5>
             <p className="text-sm mx-2">Never second guess your distances again and enjoy the game of golf!</p>
         </SwiperSlide>
