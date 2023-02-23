@@ -83,8 +83,8 @@ export const REMOVE_CLUB = gql`
 `
 
 export const ADD_DISTANCE = gql`
-    mutation addDistance($_id: ID, $clubAverage: Int) {
-        addDistance(_id: $_id, clubAverage: $clubAverage) {
+    mutation addDistance($_id: ID, $clubAverage: Int, $clubLow: Int, $clubHigh: Int, $dateTested: String, $clubName: String) {
+        addDistance(_id: $_id, clubAverage: $clubAverage, clubLow: $clubLow, clubHigh: $clubHigh, dateTested: $dateTested, clubName: $clubName) {
             _id
             username
             email

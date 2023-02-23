@@ -7,7 +7,6 @@ function AddClub() {
   const [club, setClub] = useState('')
   const [ addClub, { error } ] = useMutation(ADD_CLUB)
 
-
   const handleChange = e => {
     if (e.target.name === 'club') {
       setClub(e.target.value)
@@ -16,9 +15,6 @@ function AddClub() {
 
   const handleSubmit = e => {
     e.preventDefault()
-
-    // You can add your submit logic here, such as sending form data to the server
-    console.log('Club:', club)
   }
 
   const handleAddClub = async(clubToSave) => {

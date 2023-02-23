@@ -28,10 +28,10 @@ function UserDistanceTable() {
             console.error(err)
         }
     }
-    
     if (loading) {
         return <h2>Loading User Data...</h2>
       }
+
 
     const tableData = data?.me.clubs
 
@@ -86,9 +86,6 @@ function UserDistanceTable() {
                 hour12: true
             })}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-6 text-right text-sm font-medium sm:pr-3">
-                      <button><a href="#" className="text-green-600 hover:text-green-700">
-                        Edit<span className="sr-only">, {table.clubName}</span>
-                      </a></button>
                       <button 
                         onClick={() => handleRemoveClub(table._id)}
                         className="mx-2 rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
@@ -107,3 +104,4 @@ function UserDistanceTable() {
 }
 
 export default UserDistanceTable
+
