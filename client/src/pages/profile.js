@@ -30,17 +30,15 @@ const Profile = () => {
     )
   }
 
-  const clubData = clubresults.data?.clubs
-  const myClubs = data?.me.clubs
   const meData = data?.me
   
   return (
     <div>
-      <h2 className='text-center'>Welcome back {meData.username}</h2>
+      <h2 className='text-center mt-4'>Welcome back {meData.username}</h2>
+      <br/>
       <UserDistanceTable/>
-      <h2 className='text-center'>Add clubs to your bag</h2>
+      <hr/>
       <AddClub/>
-      <Input/>
     </div>
   )
 }

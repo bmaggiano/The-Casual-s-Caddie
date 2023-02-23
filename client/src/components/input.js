@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
+import { Link, useParams } from 'react-router-dom';
 import { ADD_DISTANCE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth'
@@ -9,6 +10,10 @@ function Input() {
 
     const [ addDistance ] = useMutation(ADD_DISTANCE)
     const { loading, data } = useQuery(QUERY_ME)
+    const { Clubs } = useParams()
+    const clubData = data?.me.clubs.find((club) => club._id === Clubs) || []
+    const [ showButton, setShowButton ] = useState(false)
+    const [ showCongrats, setCongratsButton ] = useState(false)
 
     const [numbers, setNumbers] = useState({
         num1: "",
@@ -30,7 +35,33 @@ function Input() {
         });
     };
 
+
+    const handleUpdateClub = async(clubToUpdate) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+            return false;
+        }
+
+        try {
+            const response = await addDistance({
+                variables: {
+                    _id: clubToUpdate,
+                    clubHigh: result.max,
+                    clubLow: result.min,
+                    clubAverage: result.avg
+                }
+            })
+        } catch (err) {
+            console.error(err)
+        }
+        setShowButton(false)
+        setCongratsButton(true)
+    }
+
+
     const handleSubmit = (e) => {
+        
         e.preventDefault();
         const numArr = Object.values(numbers);
         const min = Math.min(...numArr);
@@ -38,17 +69,16 @@ function Input() {
         const sum = numArr.reduce((acc, cur) => acc + parseInt(cur), 0);
         const avg = sum / numArr.length;
         setResult({ min, max, avg });
+        setShowButton(true);
     };
 
-    const clubData = data?.me.clubs
 
     return (
         <>
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="text-center bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                     <div>
-                        {clubData.map((club) => 
-                        <button className='mx-2 rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'>{club.clubName}</button>)}
+                        <h2>You're currently recalibrating your {clubData.clubName}</h2>
                     </div>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="num1" className="text-sm font-medium text-gray-700">Shot 1:</label>
@@ -109,7 +139,23 @@ function Input() {
                         <p>Average: {result.avg}</p>
                     </form>
                 </div>
+                {showButton && (
+    <button onClick={() => handleUpdateClub(clubData._id)}
+        className="flex w-full justify-center rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+    >Update Club</button>
+)}
+
             </div>
+            {showCongrats && (
+    <div>
+        <br/>
+        <h4 className='text-center'>Your {clubData.clubName} has been updated!</h4>
+        <br/>
+    <Link to={`/Profile`}
+        className="flex w-full justify-center rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+        >Return To Profile</Link>
+        </div>
+)}
         </>
     );
 }

@@ -3,6 +3,7 @@ import  { useQuery }  from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import { useMutation } from '@apollo/client'
 import { REMOVE_CLUB } from '../utils/mutations'
+import { useNavigate, Link } from "react-router-dom"
 import Auth from '../utils/auth'
 
 
@@ -10,10 +11,16 @@ function UserDistanceTable() {
 
     const { loading, data } = useQuery(QUERY_ME)
     const [ removeClub ] = useMutation(REMOVE_CLUB)
+    const tableData = data?.me.clubs
 
-    
+    const navigate = useNavigate();
+    const routeChange = () => {
+      let path = `/Edit/${tableData._id}`
+      navigate(path)
+    }
+
     const handleRemoveClub = async(clubToRemove) => {
-        const token = Auth.loggedIn() ? Auth.getToken : null;
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
     
         if (!token) {
             return false;
@@ -32,8 +39,13 @@ function UserDistanceTable() {
         return <h2>Loading User Data...</h2>
       }
 
+console.log(tableData.length)
 
-    const tableData = data?.me.clubs
+    if (tableData.length === 0) {
+      return <h2>You haven't entered any clubs yet</h2>;
+    }
+
+
 
   return (
     <div>
@@ -74,17 +86,31 @@ function UserDistanceTable() {
                     <td className="whitespace-nowrap py-4 pl-6 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                       {table.clubName}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{table.clubHigh}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{table.clubLow}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{table.clubAverage}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{new Date(parseInt(table.dateTested)).toLocaleString('en-US', {
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{table.clubHigh ? ( `${table.clubHigh} yds` ) : ( `` )}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{table.clubLow ? ( `${table.clubLow} yds` ) : ( `` )}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{table.clubAverage ? ( `${table.clubAverage} yds` ) : ( `` )}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{table.clubHigh && table.clubLow && table.clubAverage ? ( new Date(parseInt(table.dateTested)).toLocaleString('en-US', {
                 month: '2-digit',
                 day: '2-digit',
                 year: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
-                hour12: true
-            })}</td>
+                hour12: true 
+            })) : (`N/A`)}</td>
+            
+            <td className="relative whitespace-nowrap py-4 pl-3 pr-6 text-right text-sm font-medium sm:pr-3">
+  {table.clubHigh && table.clubLow && table.clubAverage ? (
+    <Link 
+      to={`/Edit/${table._id}`}
+      className="mx-2 rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+      key={table._id}>Recalibrate</Link>
+  ) : (
+    <Link 
+      to={`/Edit/${table._id}`}
+      className="mx-2 rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+      key={table._id}>Calibrate</Link>
+  )}
+</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-6 text-right text-sm font-medium sm:pr-3">
                       <button 
                         onClick={() => handleRemoveClub(table._id)}

@@ -4,6 +4,7 @@ import About from './pages/about'
 import TourDistances from './pages/averageDistance'
 import Profile from './pages/profile'
 import Signup from './components/signupForm'
+import Edit from './pages/edit';
 import { setContext } from '@apollo/client/link/context';
 import {
   BrowserRouter as Router,
@@ -52,6 +53,7 @@ function App() {
           <Route path='/About' element={<About />} />
           <Route path='/Profile' element={<Profile />} />
           <Route path='/Signup' element={<Signup />} />
+          <Route path='/Edit/:Clubs' element={<Edit />} />
         </Routes>
       </Router>
     </ApolloProvider>

@@ -53,7 +53,7 @@ const distances = [
 
 export default function averageDistance() {
   return (
-    <div className="relative bg-white py-24 sm:py-32 lg:py-40">
+    <div className="relative bg-white py-8 sm:py-32 lg:py-40">
       <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
         <h2 className="text-lg font-bold text-green-700">Average Tour Pro Distances</h2>
         <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

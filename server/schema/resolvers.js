@@ -82,11 +82,10 @@ const resolvers = {
                 const updatedClub = await User.findOneAndUpdate(
                     { _id: context.user._id, "clubs._id": args._id},
                     { $set: {
-                        "clubs.$.clubName": args.clubName,
                         "clubs.$.clubHigh": args.clubHigh,
                         "clubs.$.clubLow": args.clubLow,
                         "clubs.$.clubAverage": args.clubAverage,
-                        "clubs.$.dateTested": args.dateTested
+                        "clubs.$.dateTested": Date.now()
                     }},
                     { new: true, runValidators: true }
                 );
