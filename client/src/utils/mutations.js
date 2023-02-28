@@ -44,6 +44,29 @@ export const LOGIN_USER = gql`
 }
 `;
 
+export const GOOGLE_LOGIN = gql`
+  mutation loginWithGoogle($idToken: String!) {
+    loginWithGoogle(idToken: $idToken) {
+      token
+      user { 
+        _id
+        username
+        email
+        clubs {
+        _id
+        clubId
+        clubName
+        clubAverage
+        clubHigh
+        clubLow
+        dateTested
+      }
+    }
+  }
+  }
+`;
+
+
 export const ADD_CLUB = gql`
     mutation addClub($clubName: String) {
         addClub(clubName: $clubName){

@@ -2,6 +2,7 @@ const { AuthenticationError } = require('apollo-server-express')
 const { User } = require('../models');
 const { signToken } = require('../utils/auth')
 const clubSchema = require('../models/club')
+const { OAuth2Client } = require('google-auth-library');
 const Club = require ('../models/club')
 
 const resolvers = {
@@ -34,6 +35,46 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+        // loginWithGoogle: async (parent, { idToken }) => {
+        //     const user = await User.findOne({ email: profile.email });
+        //     if (!user) {
+        //       // create a new user with the profile information
+        //       const newUser = await User.create({
+        //         email: profile.email,
+        //         name: profile.name,
+        //       });
+        //       const token = signToken(user)
+        //       return { token, newUser };
+        //     }
+        //     const token = signToken(user)
+        //     return { token, user };
+        //   },
+        loginWithGoogle: async (parent, { idToken }, { client }) => {
+            try {
+              const ticket = await client.verifyIdToken({
+                idToken,
+                audience: process.env.GOOGLE_CLIENT_ID,
+              });
+              const payload = ticket.getPayload();
+              const { email, name } = payload;
+              let user = await User.findOne({ email });
+              if (!user) {
+                // create a new user with the profile information
+                const newUser = await User.create({
+                  email,
+                  name,
+                });
+                const token = signToken({ email, name });
+                return { token, newUser };
+              }
+              const token = signToken(user);
+              return { token, user };
+            } catch (err) {
+              console.log(err);
+              throw new AuthenticationError('Invalid login credentials');
+            }
+          },
+          
         // look into UUID 
         //create separate branch
         addUser: async ( parent, { username, email, password }) => {
@@ -65,18 +106,6 @@ const resolvers = {
                } 
                throw new AuthenticationError('You need to be logged in to change club distances')
         },
-        // THIS WORKS TO UPDATE CLUB SIDE
-        // addDistance: async (parent, args, context) => {
-        //     if (context.user) {
-        //         const updatedDistance = await Club.findOneAndUpdate(
-        //             { _id: "63c9b3315145ff0db811ec2e" },
-        //             { clubAverage: args.clubAverage},
-        //             { new: true, runValidators: true},
-        //         )
-        //         return updatedDistance
-        //     }
-        //     throw new AuthenticationError('You need to be logged in to change club distances')
-        // }
         addDistance: async (parent, args, context) => {
             if (context.user) {
                 const updatedClub = await User.findOneAndUpdate(

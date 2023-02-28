@@ -30,6 +30,8 @@ function LoginForm() {
         variables: { ...userFormData }
       });
 
+      console.log(data)
+
       auth.login(data.loginUser.token);
 
     } catch (err) {

@@ -1,4 +1,8 @@
 import logo from './logo.svg';
+import GoogleLogin from './components/googleLogin';
+import GoogleLogoutButton from './components/googleLogout';
+import { useEffect } from 'react';
+import { gapi } from 'gapi-script'
 import Home from './pages/home'
 import About from './pages/about'
 import TourDistances from './pages/averageDistance'
@@ -19,7 +23,8 @@ import {
 } from '@apollo/client';
 import Navbar from './components/navbar.js'
 import './App.css';
-// import "swiper/css/bundle";
+
+const clientId = "1004159162833-2avgpkanfd1tfvsc9n2dit03l5qrpd6a.apps.googleusercontent.com"
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -43,6 +48,20 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    };
+
+    gapi.load('client:auth2', start)
+  })
+
+
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -56,6 +75,8 @@ function App() {
           <Route path='/Edit/:Clubs' element={<Edit />} />
         </Routes>
       </Router>
+      <GoogleLogin/>
+      <GoogleLogoutButton/>
     </ApolloProvider>
   );
 }

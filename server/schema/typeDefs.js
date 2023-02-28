@@ -30,6 +30,7 @@ const typeDefs = gql `
 
     type Mutation {
         loginUser(email: String!, password: String!): Auth
+        loginWithGoogle(idToken: String!): Auth
         addUser(username: String, email: String, password: String): Auth
         addDistance(_id: ID, clubAverage: Float, clubLow: Float, clubHigh: Float, clubName: String, dateTested: String): User
         addClub(clubName: String): User
