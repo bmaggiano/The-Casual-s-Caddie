@@ -31,20 +31,15 @@ module.exports = {
     // send to next endpoint
     return req;
   },
-  // signToken: function ({ username, email, _id, name }) {
-  //   let payload;
-  //   if (username && email && _id) {
-  //     payload = { username, email, _id };
-  //   } else if (email && name) {
-  //     payload = { name, email };
-  //   } else {
-  //     throw new Error('Invalid payload');
-  //   }
-  //   const options = { expiresIn: expiration, algorithm: 'HS256' };
-  //   return jwt.sign({ data: payload }, secret, options);
-  // },
-  signToken: function ({ email, name, _id, username }) {
-    const payload = { email, name, _id, username };
+  signToken: function ({ username, email, _id, name }) {
+    let payload;
+    if (username && email && _id) {
+      payload = { username, email, _id };
+    } else if (idToken) {
+      payload = { name, email };
+    } else {
+      throw new Error('Invalid payload');
+    }
     const options = { expiresIn: expiration, algorithm: 'HS256' };
     return jwt.sign({ data: payload }, secret, options);
   },

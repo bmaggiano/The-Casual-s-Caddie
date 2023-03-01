@@ -5,6 +5,25 @@ const clubSchema = require('../models/club')
 const { OAuth2Client } = require('google-auth-library');
 const Club = require ('../models/club')
 
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+
+// const verifyToken = async (idToken) => {
+//   try {
+//     const ticket = await client.verifyIdToken({
+//       idToken,
+//       audience: process.env.GOOGLE_CLIENT_ID,
+//     });
+//     const payload = ticket.getPayload();
+//     console.log('Decoded token:', payload);
+//     return payload;
+//   } catch (err) {
+//     console.error('Error verifying token:', err);
+//     throw new AuthenticationError('Invalid login credentials');
+//   }
+// };
+
+
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
@@ -35,45 +54,22 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        // loginWithGoogle: async (parent, { idToken }) => {
-        //     const user = await User.findOne({ email: profile.email });
-        //     if (!user) {
-        //       // create a new user with the profile information
-        //       const newUser = await User.create({
-        //         email: profile.email,
-        //         name: profile.name,
-        //       });
-        //       const token = signToken(user)
-        //       return { token, newUser };
-        //     }
-        //     const token = signToken(user)
-        //     return { token, user };
-        //   },
-        loginWithGoogle: async (parent, { idToken }, { client }) => {
-            try {
-              const ticket = await client.verifyIdToken({
-                idToken,
-                audience: process.env.GOOGLE_CLIENT_ID,
+        loginWithGoogle: async (parent, { idToken }) => {
+            const user = await User.findOne({ idToken });
+            console.log(idToken)
+            if (!user) {
+              // create a new user with the profile information
+              const newUser = await User.create({
+                email: profile.email,
+                name: profile.name,
               });
-              const payload = ticket.getPayload();
-              const { email, name } = payload;
-              let user = await User.findOne({ email });
-              if (!user) {
-                // create a new user with the profile information
-                const newUser = await User.create({
-                  email,
-                  name,
-                });
-                const token = signToken({ email, name });
-                return { token, newUser };
-              }
-              const token = signToken(user);
-              return { token, user };
-            } catch (err) {
-              console.log(err);
-              throw new AuthenticationError('Invalid login credentials');
+              const token = signToken(user)
+              return { token, newUser };
             }
+            const token = signToken(user)
+            return { token, user };
           },
+        
           
         // look into UUID 
         //create separate branch
@@ -125,4 +121,4 @@ const resolvers = {
 }
 }
 
-module.exports = resolvers;
+module.exports = { resolvers };

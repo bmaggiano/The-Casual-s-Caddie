@@ -45,7 +45,7 @@ export const LOGIN_USER = gql`
 `;
 
 export const GOOGLE_LOGIN = gql`
-  mutation loginWithGoogle($idToken: String!) {
+  mutation loginWithGoogle($idToken: ID!) {
     loginWithGoogle(idToken: $idToken) {
       token
       user { 
