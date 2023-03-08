@@ -18,6 +18,24 @@ export const QUERY_ME = gql`
     }
 `
 
+export const QUERY_GOOGLE_ME = gql`
+    {
+        googleMe {
+            _id
+            name
+            email
+            clubs {
+                    _id
+                    clubName
+                    clubAverage
+                    clubHigh
+                    clubLow
+                    dateTested
+                }
+        }
+    }
+`
+
 export const GET_ME = gql`
   query me {
     me {

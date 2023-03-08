@@ -31,16 +31,19 @@ module.exports = {
     // send to next endpoint
     return req;
   },
-  signToken: function ({ username, email, _id, name }) {
+  signToken: function ({ username, email, _id, name, idToken }) {
     let payload;
     if (username && email && _id) {
       payload = { username, email, _id };
     } else if (idToken) {
       payload = { name, email };
     } else {
-      throw new Error('Invalid payload');
+      // throw new Error('Invalid payload');
+      payload = {}
+
     }
-    const options = { expiresIn: expiration, algorithm: 'HS256' };
+    const options = { expiresIn: expiration, algorithm: 'HS512' }; // update algorithm to HS512
     return jwt.sign({ data: payload }, secret, options);
   },
+
 };

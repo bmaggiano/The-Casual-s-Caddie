@@ -11,7 +11,7 @@ const clientId = "1004159162833-2avgpkanfd1tfvsc9n2dit03l5qrpd6a.apps.googleuser
 
 function GoogleLoginButton() {
 
-const [ googleLogin ] = useMutation(GOOGLE_LOGIN)
+const [ loginWithGoogle ] = useMutation(GOOGLE_LOGIN)
 
 
     const onSuccess = async (res) => {
@@ -19,13 +19,14 @@ const [ googleLogin ] = useMutation(GOOGLE_LOGIN)
             const token = res.tokenId;
             const decodedToken = decode(token);
             console.log("decoded token:", decodedToken);
-            console.log(res);
-            const { data } = await googleLogin({
+            console.log('res', res)
+            const { data } = await loginWithGoogle({
               variables: {
-                idToken: res.tokenId
+                idToken: token
               }
             })
-            await auth.googleLogin(token);
+            console.log('Data: ', data)
+            auth.googleLogin(token);
           } catch (err) {
             console.log('Login Failed!', err);
           }

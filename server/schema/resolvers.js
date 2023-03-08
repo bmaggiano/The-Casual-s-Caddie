@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express')
-const { User } = require('../models');
+const { User, GoogleUser } = require('../models');
 const { signToken } = require('../utils/auth')
 const clubSchema = require('../models/club')
 const { OAuth2Client } = require('google-auth-library');
@@ -8,20 +8,20 @@ const Club = require ('../models/club')
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 
-// const verifyToken = async (idToken) => {
-//   try {
-//     const ticket = await client.verifyIdToken({
-//       idToken,
-//       audience: process.env.GOOGLE_CLIENT_ID,
-//     });
-//     const payload = ticket.getPayload();
-//     console.log('Decoded token:', payload);
-//     return payload;
-//   } catch (err) {
-//     console.error('Error verifying token:', err);
-//     throw new AuthenticationError('Invalid login credentials');
-//   }
-// };
+const verifyToken = async (idToken) => {
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    console.log('Decoded token:', payload);
+    return payload;
+  } catch (err) {
+    console.error('Error verifying token:', err);
+    throw new AuthenticationError('Invalid login credentials');
+  }
+};
 
 
 const resolvers = {
@@ -34,7 +34,13 @@ const resolvers = {
         },
         clubs: async (parent, args) => {
             return Club.find()
-        }
+        },
+        googleMe: async (parent, args, context) => {
+            if (context.user) {
+                return GoogleUser.findOne({_id: context.user._id}).populate('club')
+            }
+            throw new AuthenticationError('You must be logged in')
+        },
     },
 
     Mutation: {
@@ -54,22 +60,32 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+
+
         loginWithGoogle: async (parent, { idToken }) => {
-            const user = await User.findOne({ idToken });
-            console.log(idToken)
+            const payload = await verifyToken(idToken)
+            const email = payload.email
+            const name = payload.name
+            const user = await GoogleUser.findOne({ email });
+            console.log("email: ", email);
+            console.log("name: ", name);
+            
+            let token;
+          
             if (!user) {
               // create a new user with the profile information
-              const newUser = await User.create({
-                email: profile.email,
-                name: profile.name,
+              const newUser = await GoogleUser.create({
+                email,
+                name
               });
-              const token = signToken(user)
+          
+              token = signToken(newUser);
               return { token, newUser };
+            } else {
+              token = signToken(user);
+              return { token, user };
             }
-            const token = signToken(user)
-            return { token, user };
           },
-        
           
         // look into UUID 
         //create separate branch

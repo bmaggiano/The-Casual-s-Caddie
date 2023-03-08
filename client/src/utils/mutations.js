@@ -48,10 +48,10 @@ export const GOOGLE_LOGIN = gql`
   mutation loginWithGoogle($idToken: ID!) {
     loginWithGoogle(idToken: $idToken) {
       token
-      user { 
+      user {
         _id
-        username
         email
+        name
         clubs {
         _id
         clubId
