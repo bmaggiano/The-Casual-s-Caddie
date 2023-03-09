@@ -42,7 +42,7 @@ function UserDistanceTable() {
 console.log(tableData.length)
 
     if (tableData.length === 0) {
-      return <h2>You haven't entered any clubs yet</h2>;
+      return <h2 className='text-center'>You haven't entered any clubs yet</h2>;
     }
 
 

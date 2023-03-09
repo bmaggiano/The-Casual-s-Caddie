@@ -33,14 +33,17 @@ module.exports = {
   },
   signToken: function ({ username, email, _id, name, idToken }) {
     let payload;
+    console.log("name payload", name)
     if (username && email && _id) {
       payload = { username, email, _id };
-    } else if (idToken) {
+      console.log("new payload", payload)
+    } else if (name, email) {
       payload = { name, email };
+      console.log("new payload", payload)
+
     } else {
       // throw new Error('Invalid payload');
       payload = {}
-
     }
     const options = { expiresIn: expiration, algorithm: 'HS512' }; // update algorithm to HS512
     return jwt.sign({ data: payload }, secret, options);

@@ -37,7 +37,7 @@ const resolvers = {
         },
         googleMe: async (parent, args, context) => {
             if (context.user) {
-                return GoogleUser.findOne({_id: context.user._id}).populate('club')
+                return GoogleUser.findOne({name: context.user.name}).populate('club')
             }
             throw new AuthenticationError('You must be logged in')
         },
@@ -58,6 +58,7 @@ const resolvers = {
             }
 
             const token = signToken(user);
+            console.log('token: ', token)
             return { token, user };
         },
 
@@ -70,7 +71,8 @@ const resolvers = {
             console.log("email: ", email);
             console.log("name: ", name);
             
-            let token;
+            // let token;
+            console.log("user:", user)
           
             if (!user) {
               // create a new user with the profile information
@@ -79,10 +81,11 @@ const resolvers = {
                 name
               });
           
-              token = signToken(newUser);
+              const token = signToken(newUser);
               return { token, newUser };
             } else {
-              token = signToken(user);
+              const token = signToken(user);
+              console.log("token: ", token)
               return { token, user };
             }
           },
@@ -106,10 +109,34 @@ const resolvers = {
            } 
            throw new AuthenticationError('You need to be logged in to change club distances')
         },
+        addGoogleClub: async (parent, args, context) => {
+           if (context.user) {
+            const updatedUser = await GoogleUser.findOneAndUpdate(
+                {name: context.user.name},
+                { $addToSet: { clubs: args }},
+                { new: true, runValidators: true },
+            )
+            console.log(updatedUser)
+            return updatedUser
+           } 
+           throw new AuthenticationError('You need to be logged in to change club distances')
+        },
         removeClub: async (parent, args, context) => {
             if (context.user) {
                 const updatedClub = await User.findOneAndUpdate(
                     {_id: context.user._id},
+                    // for some reason "args" works but "args._id" doesn't
+                    { $pull: { clubs: args }},
+                    { new: true, runValidators: true },
+                )
+                return updatedClub
+               } 
+               throw new AuthenticationError('You need to be logged in to change club distances')
+        },
+        removeGoogleClub: async (parent, args, context) => {
+            if (context.user) {
+                const updatedClub = await GoogleUser.findOneAndUpdate(
+                    {name: context.user.name},
                     // for some reason "args" works but "args._id" doesn't
                     { $pull: { clubs: args }},
                     { new: true, runValidators: true },

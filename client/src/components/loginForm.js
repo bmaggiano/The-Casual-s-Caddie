@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import { LOGIN_USER } from '../utils/mutations'
+import GoogleLogin from './googleLogin';
+import GoogleLogoutButton from './googleLogout';
 import auth from '../utils/auth'
 import { useMutation } from '@apollo/client'
 
@@ -118,22 +120,14 @@ function LoginForm() {
                   </div>
                 </div>
   
-                <div className="mt-6 w-24 flex justify-center mx-auto">
-                  <div>
-                    <a
-                      href="#"
-                      
-                      className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
-                    >
-                      <span className="sr-only">Sign in with Google</span>
-                      <svg className="h-8 w-8 text-red-500"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M17.788 5.108A9 9 0 1021 12h-8" /></svg>
-                      
-                    </a>
+                <div className="mt-6 flex justify-center mx-auto">
+
+        <GoogleLogin/>
+      {/* <GoogleLogoutButton/> */}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </>
     )

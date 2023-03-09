@@ -27,14 +27,14 @@ class AuthService {
 
   googleLogin(idToken) {
       localStorage.setItem('id_token', idToken);
-      // window.location.assign('/Profile');
+      window.location.assign('/Profile');
     } catch (err) {
       console.error(err);
     }
 
   login(idToken) {
     localStorage.setItem('id_token', idToken);
-    // window.location.assign('/Profile');
+    window.location.assign('/Profile');
   }
 
   logout() {

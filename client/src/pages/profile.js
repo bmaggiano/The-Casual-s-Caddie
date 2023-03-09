@@ -11,22 +11,15 @@ import AddClub from '../components/addclub'
 const Profile = () => {
 
   const clubresults = useQuery(QUERY_CLUBS)
-  // const { loading, data } = useQuery(QUERY_ME)
-  const { loading, data } = useQuery(QUERY_GOOGLE_ME)
+  const { data: meData } = useQuery(QUERY_ME)
+  const { loading, data: googleData } = useQuery(QUERY_GOOGLE_ME)
 
-console.log(data)
-
-
-  const navigate = useNavigate()
-  const refreshPage = () => {
-    navigate(0)
-  }
 
   if (loading) {
     return <h2>Loading User Data...</h2>
   }
 
-  if (data === undefined) {
+  if (meData && googleData === undefined) {
     return (
       <>
     <Login />
@@ -34,14 +27,14 @@ console.log(data)
     )
   }
 
-  const meData = data?.googleMe
-  // const googleDataMe = googleData?.me
+  const me = meData?.me
+  const goog = googleData?.googleMe
   
   return (
     <div>
-      <h2 className='text-center mt-4'>Welcome back {meData.name}</h2>
+      <h2 className='text-center mt-4'>Welcome back {goog?.name || me?.username}</h2>
       <br/>
-      <UserDistanceTable/>
+      {/* <UserDistanceTable/> */}
       <hr/>
       <AddClub/>
     </div>

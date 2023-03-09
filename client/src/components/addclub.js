@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
 import Auth from '../utils/auth'
-import { useMutation } from '@apollo/client'
-import { ADD_CLUB } from '../utils/mutations'
+import { useMutation, useQuery } from '@apollo/client'
+import { ADD_CLUB, ADD_GOOGLE_CLUB } from '../utils/mutations'
+import { QUERY_GOOGLE_ME, QUERY_ME } from '../utils/queries'
 
 function AddClub() {
   const [club, setClub] = useState('')
+  const { data: googleData } = useQuery(QUERY_GOOGLE_ME)
+  const { data: meData } = useQuery(QUERY_ME)
   const [ addClub, { error } ] = useMutation(ADD_CLUB)
+  const [ addGoogleClub ] = useMutation(ADD_GOOGLE_CLUB)
+
+
+  const goog = googleData?.googleMe
+  const me = meData?.me
+
 
   const handleChange = e => {
     if (e.target.name === 'club') {
@@ -18,19 +27,32 @@ function AddClub() {
   }
 
   const handleAddClub = async(clubToSave) => {
-    const token = Auth.loggedIn() ? Auth.getToken : null;
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
       return false;
     }
 
-    try {
-      const response = await addClub({
-        variables: {clubName: club},
-      })
-    } catch (err) {
-      console.error(err)
+    if(goog === null) {
+      try {
+        const response = await addClub({
+          variables: {clubName: club},
+        })
+      } catch (err) {
+        console.error(err)
+      }
     }
+
+    if(me === null) {
+      try {
+        const response = await addGoogleClub({
+          variables: {clubName: club},
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    
   }
 
   return (

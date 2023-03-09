@@ -18,15 +18,13 @@ const [ loginWithGoogle ] = useMutation(GOOGLE_LOGIN)
         try {
             const token = res.tokenId;
             const decodedToken = decode(token);
-            console.log("decoded token:", decodedToken);
-            console.log('res', res)
             const { data } = await loginWithGoogle({
               variables: {
                 idToken: token
               }
             })
             console.log('Data: ', data)
-            auth.googleLogin(token);
+            auth.googleLogin(data.loginWithGoogle.token);
           } catch (err) {
             console.log('Login Failed!', err);
           }
@@ -43,7 +41,6 @@ const [ loginWithGoogle ] = useMutation(GOOGLE_LOGIN)
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
-        isSignedIn={true}
         />
     </div>
   )

@@ -85,12 +85,48 @@ export const ADD_CLUB = gql`
         }
     }
 `
+export const ADD_GOOGLE_CLUB = gql`
+    mutation addGoogleClub($clubName: String) {
+        addGoogleClub(clubName: $clubName){
+            _id
+            name
+            email
+            clubs {
+                _id
+                clubId
+                    clubName
+                    clubAverage
+                    clubHigh
+                    clubLow
+                    dateTested
+            }
+        }
+    }
+`
 
 export const REMOVE_CLUB = gql`
     mutation removeClub($_id: ID) {
         removeClub(_id: $_id){
             _id
             username
+            email
+            clubs {
+                _id
+                clubId
+                    clubName
+                    clubAverage
+                    clubHigh
+                    clubLow
+                    dateTested
+            }
+        }
+    }
+`
+export const REMOVE_GOOGLE_CLUB = gql`
+    mutation removeGoogleClub($_id: ID) {
+        removeGoogleClub(_id: $_id){
+            _id
+            name
             email
             clubs {
                 _id

@@ -1,6 +1,4 @@
 import logo from './logo.svg';
-import GoogleLogin from './components/googleLogin';
-import GoogleLogoutButton from './components/googleLogout';
 import { useEffect } from 'react';
 import { gapi } from 'gapi-script'
 import Home from './pages/home'
@@ -75,8 +73,6 @@ function App() {
           <Route path='/Edit/:Clubs' element={<Edit />} />
         </Routes>
       </Router>
-      <GoogleLogin/>
-      <GoogleLogoutButton/>
     </ApolloProvider>
   );
 }
