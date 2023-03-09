@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
 import { Link, useParams } from 'react-router-dom';
 import { ADD_DISTANCE } from '../utils/mutations';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_GOOGLE_ME } from '../utils/queries';
 import Auth from '../utils/auth'
 
 
-function Input() {
+function GoogleInput() {
 
     const [ addDistance ] = useMutation(ADD_DISTANCE)
-    const { data } = useQuery(QUERY_ME)
+    const { data } = useQuery(QUERY_GOOGLE_ME)
     const { Clubs } = useParams()
-    const clubData = data?.me.clubs.find((club) => club._id === Clubs) || []
+    const clubData = data?.googleMe.clubs.find((club) => club._id === Clubs) || []
     const [ showButton, setShowButton ] = useState(false)
     const [ showCongrats, setCongratsButton ] = useState(false)
 
@@ -160,4 +160,4 @@ function Input() {
     );
 }
 
-export default Input
+export default GoogleInput
