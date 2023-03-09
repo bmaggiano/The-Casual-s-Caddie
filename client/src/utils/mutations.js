@@ -159,3 +159,21 @@ export const ADD_DISTANCE = gql`
         }
     }
 `
+export const ADD_GOOGLE_DISTANCE = gql`
+    mutation addGoogleDistance($_id: ID, $clubAverage: Float, $clubLow: Float, $clubHigh: Float, $dateTested: String, $clubName: String) {
+        addGoogleDistance(_id: $_id, clubAverage: $clubAverage, clubLow: $clubLow, clubHigh: $clubHigh, dateTested: $dateTested, clubName: $clubName) {
+            _id
+            name
+            email
+            clubs {
+                _id
+                clubId
+                clubName
+                clubAverage
+                clubHigh
+                clubLow
+                dateTested
+            }
+        }
+    }
+`

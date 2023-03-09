@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
 import { Link, useParams } from 'react-router-dom';
-import { ADD_DISTANCE } from '../utils/mutations';
+import { ADD_GOOGLE_DISTANCE } from '../utils/mutations';
 import { QUERY_GOOGLE_ME } from '../utils/queries';
 import Auth from '../utils/auth'
 
 
 function GoogleInput() {
 
-    const [ addDistance ] = useMutation(ADD_DISTANCE)
+    const [ addDistance ] = useMutation(ADD_GOOGLE_DISTANCE)
     const { data } = useQuery(QUERY_GOOGLE_ME)
     const { Clubs } = useParams()
     const clubData = data?.googleMe.clubs.find((club) => club._id === Clubs) || []

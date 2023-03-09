@@ -46,6 +46,7 @@ const typeDefs = gql `
         loginWithGoogle(idToken: ID!): GoogleAuth
         addUser(username: String, email: String, password: String): Auth
         addDistance(_id: ID, clubAverage: Float, clubLow: Float, clubHigh: Float, clubName: String, dateTested: String): User
+        addGoogleDistance(_id: ID, clubAverage: Float, clubLow: Float, clubHigh: Float, clubName: String, dateTested: String): GoogleUser
         addClub(clubName: String): User
         addGoogleClub(clubName: String): GoogleUser
         removeClub(_id: ID): User

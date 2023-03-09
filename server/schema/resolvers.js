@@ -160,6 +160,22 @@ const resolvers = {
                 return updatedClub;
             }
             throw new AuthenticationError('You need to be logged in to update club distances');
+        },
+        addGoogleDistance: async (parent, args, context) => {
+            if (context.user) {
+                const updatedClub = await GoogleUser.findOneAndUpdate(
+                    { name: context.user.name, "clubs._id": args._id},
+                    { $set: {
+                        "clubs.$.clubHigh": args.clubHigh,
+                        "clubs.$.clubLow": args.clubLow,
+                        "clubs.$.clubAverage": args.clubAverage,
+                        "clubs.$.dateTested": Date.now()
+                    }},
+                    { new: true, runValidators: true }
+                );
+                return updatedClub;
+            }
+            throw new AuthenticationError('You need to be logged in to update club distances');
         }
 }
 }
