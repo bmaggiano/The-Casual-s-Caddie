@@ -3,7 +3,7 @@ import  { useQuery }  from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import { useMutation } from '@apollo/client'
 import { REMOVE_CLUB } from '../utils/mutations'
-import { useNavigate, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Auth from '../utils/auth'
 
 
@@ -13,12 +13,6 @@ function UserDistanceTable() {
     const [ removeClub ] = useMutation(REMOVE_CLUB)
     const tableData = data?.me.clubs
 
-    const navigate = useNavigate();
-    const routeChange = () => {
-      let path = `/Edit/${tableData._id}`
-      navigate(path)
-    }
-
     const handleRemoveClub = async(clubToRemove) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
     
@@ -27,10 +21,9 @@ function UserDistanceTable() {
         }
         
         try {
-            const response = await removeClub({
-                variables: {_id: clubToRemove},
+             await removeClub({
+              variables: {_id: clubToRemove},
           })
-          // refreshPage()
         } catch (err) {
             console.error(err)
         }
@@ -38,8 +31,6 @@ function UserDistanceTable() {
     if (loading) {
         return <h2>Loading User Data...</h2>
       }
-
-console.log(tableData.length)
 
     if (tableData.length === 0) {
       return <h2 className='text-center'>You haven't entered any clubs yet</h2>;

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { useEffect } from 'react';
 import { gapi } from 'gapi-script'
 import Home from './pages/home'

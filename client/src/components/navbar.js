@@ -1,7 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { useState } from "react";
 import logo from '../images/logo.png'
 import auth from '../utils/auth'
 import '../App.css'
@@ -9,14 +7,6 @@ import '../App.css'
 
 function Navbar() {
     const [isNavOpen, setIsNavOpen] = useState(false);
-
-    const [currentPage, setCurrentPage] = useState();
-    let location = useLocation();
-
-
-    useEffect(() => {
-        setCurrentPage(location.pathname)
-    });
 
     return (
 

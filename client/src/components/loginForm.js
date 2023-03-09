@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { LOGIN_USER } from '../utils/mutations'
-import GoogleLogin from './googleLogin';
-import GoogleLogoutButton from './googleLogout';
+// import GoogleLogin from './googleLogin';
+// import GoogleLogoutButton from './googleLogout';
 import auth from '../utils/auth'
 import { useMutation } from '@apollo/client'
 
@@ -9,8 +9,6 @@ import { useMutation } from '@apollo/client'
 function LoginForm() {
   const [loginUser, { error }] = useMutation(LOGIN_USER)
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [validated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -31,14 +29,10 @@ function LoginForm() {
       const { data } = await loginUser({
         variables: { ...userFormData }
       });
-
-      console.log(data)
-
       auth.login(data.loginUser.token);
 
     } catch (err) {
-      console.error(err);
-      setShowAlert(true);
+      console.error(error);
     }
 
     setUserFormData({
@@ -110,7 +104,7 @@ function LoginForm() {
                 </div>
               </form>
   
-              <div className="mt-6">
+              {/* <div className="mt-6">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-gray-300" />
@@ -122,10 +116,12 @@ function LoginForm() {
   
                 <div className="mt-6 flex justify-center mx-auto">
 
+These login buttons and logout buttons are fully functional, however if we choose to launch, we need to 
+really make sure user data is safe and secured, and also register our website using https://console.cloud.google.com/apis/credentials/consent?project=the-casuals-caddie
         <GoogleLogin/>
-      {/* <GoogleLogoutButton/> */}
+      <GoogleLogoutButton/>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
         </div>

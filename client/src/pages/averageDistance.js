@@ -69,7 +69,7 @@ export default function averageDistance() {
             </tr>
           </thead>
           {distances.map((distance) => (
-          <tbody className="odd:bg-gray-50">
+          <tbody key={distance.name} className="odd:bg-gray-50">
             <tr>
               <td className='relative py-2 pl-4 sm:pl-6 pr-3 text-md'>
                 {distance.name}
@@ -83,7 +83,7 @@ export default function averageDistance() {
         </table>
         </div>
         <br/>
-        <p className=' text-slate-300 text-xs'>*according to <a className="text-slate-300" target="_blank" href='https://blog.trackmangolf.com/trackman-average-tour-stats/'>https://blog.trackmangolf.com/trackman-average-tour-stats/</a></p>
+        <p className=' text-slate-300 text-xs'>*according to <a className="text-slate-300" target="_blank" rel="noreferrer" href='https://blog.trackmangolf.com/trackman-average-tour-stats/'>https://blog.trackmangolf.com/trackman-average-tour-stats/</a></p>
         <p className="mx-auto mt-5 max-w-prose text-xl text-gray-500">
           Theodore Roosevelt once said "Comparison is the thief of joy". It's very easy to see a tour player hit a driver 350+ yards and feel incompetent,
           but the PGA tour is a very big organization and there's lots of players... You're not that far off!

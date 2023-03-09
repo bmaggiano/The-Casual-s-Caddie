@@ -1,10 +1,7 @@
 import React from 'react'
 import Login from '../components/loginForm'
-import Input from '../components/input'
-import { useQuery, useMutation } from "@apollo/client"
-import { QUERY_ME, QUERY_CLUBS, QUERY_GOOGLE_ME } from "../utils/queries"
-import Auth from '../utils/auth'
-import {useNavigate} from "react-router-dom"
+import { useQuery } from "@apollo/client"
+import { QUERY_ME, QUERY_GOOGLE_ME } from "../utils/queries"
 import UserDistanceTable from '../components/userDistanceTable'
 import GoogleUserDistanceTable from '../components/googleUserDistanceTable'
 import AddClub from '../components/addclub'

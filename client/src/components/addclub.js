@@ -8,7 +8,7 @@ function AddClub() {
   const [club, setClub] = useState('')
   const { data: googleData } = useQuery(QUERY_GOOGLE_ME)
   const { data: meData } = useQuery(QUERY_ME)
-  const [ addClub, { error } ] = useMutation(ADD_CLUB)
+  const [ addClub ] = useMutation(ADD_CLUB)
   const [ addGoogleClub ] = useMutation(ADD_GOOGLE_CLUB)
 
 
@@ -22,10 +22,6 @@ function AddClub() {
     }
   }
 
-  const handleSubmit = e => {
-    e.preventDefault()
-  }
-
   const handleAddClub = async(clubToSave) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -35,7 +31,7 @@ function AddClub() {
 
     if(goog === null) {
       try {
-        const response = await addClub({
+        await addClub({
           variables: {clubName: club},
         })
       } catch (err) {
@@ -45,7 +41,7 @@ function AddClub() {
 
     if(me === null) {
       try {
-        const response = await addGoogleClub({
+        await addGoogleClub({
           variables: {clubName: club},
         })
       } catch (err) {

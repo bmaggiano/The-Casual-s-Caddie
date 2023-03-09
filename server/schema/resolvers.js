@@ -1,7 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express')
 const { User, GoogleUser } = require('../models');
 const { signToken } = require('../utils/auth')
-const clubSchema = require('../models/club')
 const { OAuth2Client } = require('google-auth-library');
 const Club = require ('../models/club')
 
@@ -15,7 +14,6 @@ const verifyToken = async (idToken) => {
       audience: process.env.GOOGLE_CLIENT_ID,
     });
     const payload = ticket.getPayload();
-    console.log('Decoded token:', payload);
     return payload;
   } catch (err) {
     console.error('Error verifying token:', err);
@@ -58,7 +56,6 @@ const resolvers = {
             }
 
             const token = signToken(user);
-            console.log('token: ', token)
             return { token, user };
         },
 
@@ -68,12 +65,7 @@ const resolvers = {
             const email = payload.email
             const name = payload.name
             const user = await GoogleUser.findOne({ email });
-            console.log("email: ", email);
-            console.log("name: ", name);
-            
-            // let token;
-            console.log("user:", user)
-          
+                      
             if (!user) {
               // create a new user with the profile information
               const newUser = await GoogleUser.create({
@@ -85,13 +77,10 @@ const resolvers = {
               return { token, newUser };
             } else {
               const token = signToken(user);
-              console.log("token: ", token)
               return { token, user };
             }
           },
           
-        // look into UUID 
-        //create separate branch
         addUser: async ( parent, { username, email, password }) => {
             const user = await User.create({ username, email, password })
             const token = signToken(user)
@@ -104,7 +93,6 @@ const resolvers = {
                 { $addToSet: { clubs: args }},
                 { new: true, runValidators: true },
             )
-            console.log(updatedUser)
             return updatedUser
            } 
            throw new AuthenticationError('You need to be logged in to change club distances')
@@ -116,7 +104,6 @@ const resolvers = {
                 { $addToSet: { clubs: args }},
                 { new: true, runValidators: true },
             )
-            console.log(updatedUser)
             return updatedUser
            } 
            throw new AuthenticationError('You need to be logged in to change club distances')

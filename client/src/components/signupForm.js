@@ -22,7 +22,7 @@ function SignupForm() {
 
       auth.login(data.addUser.token);
     } catch (err) {
-      console.error(err);
+      console.error(error);
     }
 
     setUserFormData({

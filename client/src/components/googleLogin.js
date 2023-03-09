@@ -1,7 +1,7 @@
 import React from 'react'
 import { GoogleLogin } from 'react-google-login'
 import auth from '../utils/auth'
-import decode from 'jwt-decode'
+// import decode from 'jwt-decode'
 import { useMutation } from '@apollo/client'
 import { GOOGLE_LOGIN } from '../utils/mutations'
 
@@ -17,16 +17,15 @@ const [ loginWithGoogle ] = useMutation(GOOGLE_LOGIN)
     const onSuccess = async (res) => {
         try {
             const token = res.tokenId;
-            const decodedToken = decode(token);
+            // const decodedToken = decode(token);
             const { data } = await loginWithGoogle({
               variables: {
                 idToken: token
               }
             })
-            console.log('Data: ', data)
             auth.googleLogin(data.loginWithGoogle.token);
           } catch (err) {
-            console.log('Login Failed!', err);
+            console.error(err);
           }
         };
     const onFailure = (res) => {

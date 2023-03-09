@@ -24,8 +24,7 @@ module.exports = {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
     } catch (err) {
-      console.log(err)
-      console.log('Invalid token');
+      console.error(err)
     }
 
     // send to next endpoint
@@ -33,13 +32,10 @@ module.exports = {
   },
   signToken: function ({ username, email, _id, name, idToken }) {
     let payload;
-    console.log("name payload", name)
     if (username && email && _id) {
       payload = { username, email, _id };
-      console.log("new payload", payload)
     } else if (name, email) {
       payload = { name, email };
-      console.log("new payload", payload)
 
     } else {
       // throw new Error('Invalid payload');

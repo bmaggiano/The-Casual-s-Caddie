@@ -3,19 +3,21 @@ import LoginForm from '../components/loginForm'
 import '../App.css'
 import grass from '../images/grass.jpg'
 import Carousel from '../components/carousel'
+import auth from '../utils/auth'
+import { Link } from 'react-router-dom'
 
 function Home() {
 
 
   return (
     <>
-      <div className=' bg-neutral-50'>
+      <div className=''>
         <div className="mainHome relative bg-black-800 mx-4 mt-4 rounded-md">
           <div className="absolute inset-0">
             <img
               className="h-full w-full object-cover rounded-md"
               src={grass}
-              alt="picture of well maintained golf grass"
+              alt="Well maintained golf grass"
             />
             <div className="absolute inset-0 bg-green-600 mix-blend-multiply rounded-md" aria-hidden="true" />
           </div>
@@ -27,7 +29,18 @@ function Home() {
           </div>
         </div>
         <Carousel />
-        <LoginForm />
+        {!auth.loggedIn() ? (<LoginForm />) : (<>
+        <br/>
+        <br/>
+        <h4 className='text-center'>You're currently logged in, click below to visit your profile</h4>
+        <br/>
+        <div className='flex justify-center'>
+        <Link
+        to={`/Profile`}
+        className="mx-2 rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+        >Profile</Link>
+        </div>
+        </>) }
       </div>
 
     </>

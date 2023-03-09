@@ -44,7 +44,7 @@ function GoogleInput() {
         }
 
         try {
-            const response = await addDistance({
+            await addDistance({
                 variables: {
                     _id: clubToUpdate,
                     clubHigh: result.max,
