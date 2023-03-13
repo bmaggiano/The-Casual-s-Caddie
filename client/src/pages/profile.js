@@ -13,7 +13,7 @@ const Profile = () => {
 
 
   if (loading) {
-    return <h2>Loading User Data...</h2>
+    return <h2 className='contentFont text-center mt-4'>Loading User Data...</h2>
   }
 
   const me = meData?.me
@@ -26,20 +26,24 @@ const Profile = () => {
       ) : (
         goog ? (
           <>
-          <h2 className='text-center mt-4'>Welcome back {goog?.name || me?.username}</h2>
+          <h2 className='contentFont text-center mt-4'>Welcome back {goog?.name || me?.username}!</h2>
           <br/>
           <GoogleUserDistanceTable />
           <hr/>
           <AddClub/>
+          <br/>
+          <br/>
           </>
         ) : (
           me && 
           <>
-          <h2 className='text-center mt-4'>Welcome back {goog?.name || me?.username}</h2>
+          <h2 className='contentFont font-bold text-center mt-4'>Welcome back {goog?.name || me?.username}!</h2>
           <br/>
           <UserDistanceTable />
           <hr/>
           <AddClub/>
+          <br/>
+          <br/>
           </>
         )
       )}

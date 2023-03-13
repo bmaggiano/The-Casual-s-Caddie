@@ -78,7 +78,7 @@ function Input() {
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="text-center bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                     <div>
-                        <h2>You're currently recalibrating your {clubData.clubName}</h2>
+                        <h2 className='contentFont'>You're currently recalibrating your {clubData.clubName}</h2>
                     </div>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="num1" className="text-sm font-medium text-gray-700">Shot 1:</label>
@@ -149,7 +149,7 @@ function Input() {
             {showCongrats && (
     <div>
         <br/>
-        <h4 className='text-center'>Your {clubData.clubName} has been updated!</h4>
+        <h4 className='text-center contentFont'>Your {clubData.clubName} has been updated!</h4>
         <br/>
     <Link to={`/Profile`}
         className="flex w-full justify-center rounded-md border border-transparent bg-green-700 my-2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"

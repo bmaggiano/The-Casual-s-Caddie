@@ -16,9 +16,9 @@ function Navbar() {
                     <img className="bg-black rounded-full"src={logo} alt="logo" />
                 </a>
                 <nav>
-                    <section className="MOBILE-MENU flex lg:hidden">
+                    <section className="MOBILE-MENU  flex lg:hidden">
                         <div
-                            className="HAMBURGER-ICON space-y-2"
+                            className="HAMBURGER-ICON cursor-pointer space-y-2"
                             onClick={() => setIsNavOpen((prev) => !prev)}
                         >
                             <span className="block h-0.5 w-8 bg-gray-600"></span>
@@ -46,20 +46,20 @@ function Navbar() {
                             </div>
                             <ul className="flex flex-col items-center justify-between min-h-[250px]">
                                 <li className="border-b border-gray-400 my-8 uppercase">
-                                    <a href="/">Home</a>
+                                    <a className="active-link" href="/">Home</a>
                                 </li>
                                 <li className="border-b border-gray-400 my-8 uppercase">
-                                    <a href="/TourDistances">Tour Distances</a>
+                                    <a className="active-link" href="/TourDistances">Tour Distances</a>
                                 </li>
                                 <li className="border-b border-gray-400 my-8 uppercase">
-                                    <a href="/About">About</a>
+                                    <a className="active-link" href="/About">About</a>
                                 </li>
                                 <li className="border-b border-gray-400 my-8 uppercase">
-                                    <a href="/Profile">Profile</a>
+                                    <a className="active-link" href="/Profile">Profile</a>
                                 </li>
                                 {auth.loggedIn() ? (
                             <li className="border-b border-gray-400 my-8 uppercase">
-                                <a onClick={auth.logout} href="/">Logout</a>
+                                <a className="active-link" onClick={auth.logout} href="/">Logout</a>
                             </li>
                         ) : (
                             <li></li>
@@ -70,20 +70,20 @@ function Navbar() {
 
                     <ul className="DESKTOP-MENU hidden space-x-8 lg:flex">
                         <li>
-                            <a href="/">Home</a>
+                            <a className="active-link" href="/">Home</a>
                         </li>
                         <li>
-                            <a href="/TourDistances">TourDistances</a>
+                            <a className="active-link" href="/TourDistances">TourDistances</a>
                         </li>
                         <li>
-                            <a href="/About">About</a>
+                            <a className="active-link" href="/About">About</a>
                         </li>
                         <li>
-                            <a href="/Profile">Profile</a>
+                            <a className="active-link" href="/Profile">Profile</a>
                         </li>
                         {auth.loggedIn() ? (
                             <li>
-                                <a onClick={auth.logout} href="/">Logout</a>
+                                <a className="active-link" onClick={auth.logout} href="/">Logout</a>
                             </li>
                         ) : (
                             <li></li>

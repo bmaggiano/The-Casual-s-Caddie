@@ -55,9 +55,9 @@ function AddClub() {
     <div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <h2>Add clubs to your bag here</h2>
+          <h2 className='contentFont font-bold'>Add clubs to your bag here</h2>
           <form onSubmit={handleAddClub}>
-            <label htmlFor="club" className="text-sm font-medium text-gray-700">Club Name</label>
+            <label htmlFor="club" className="contentFont text-sm font-medium text-gray-700">Club Name</label>
             <input
               type="text"
               name="club"

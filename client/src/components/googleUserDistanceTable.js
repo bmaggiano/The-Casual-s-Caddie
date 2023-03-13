@@ -40,6 +40,7 @@ function GoogleUserDistanceTable() {
 
   return (
     <div>
+      <p className='text-center'>Here's the most recent data for your clubs</p>
       <div className="px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
