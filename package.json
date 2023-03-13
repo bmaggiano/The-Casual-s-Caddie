@@ -1,7 +1,7 @@
 {
     "name": "the-casuals-caddie",
     "version": "1.0.0",
-    "description": "",
+    "description": "A full stack web app that allows users to keep track of their golf progress",
     "main": "server/server.js",
     "scripts": {
       "start": "node server/server.js",
