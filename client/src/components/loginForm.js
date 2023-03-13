@@ -9,6 +9,8 @@ import { useMutation } from '@apollo/client'
 function LoginForm() {
   const [loginUser, { error }] = useMutation(LOGIN_USER)
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [showError, setShowError] = useState(false);
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -32,7 +34,7 @@ function LoginForm() {
       auth.login(data.loginUser.token);
 
     } catch (err) {
-      console.error(error);
+      setShowError(true);
     }
 
     setUserFormData({
@@ -101,6 +103,13 @@ function LoginForm() {
                   >
                     Sign in
                   </button>
+                </div>
+                <div>
+                {error && (
+  <div className="text-center alert alert-danger" role="alert">
+    {error.message}
+  </div>
+)}
                 </div>
               </form>
   

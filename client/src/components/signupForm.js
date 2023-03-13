@@ -6,6 +6,8 @@ import auth from '../utils/auth';
 function SignupForm() {
     const [addUser, { error }] = useMutation(ADD_USER);
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+    const [showError, setShowError] = useState(false);
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -22,7 +24,8 @@ function SignupForm() {
 
       auth.login(data.addUser.token);
     } catch (err) {
-      console.error(error);
+      console.error(err);
+      setShowError(true)
     }
 
     setUserFormData({
@@ -110,6 +113,13 @@ function SignupForm() {
                   >
                     Sign Up
                   </button>
+                </div>
+                <div>
+                {error && (
+  <div className="text-center alert alert-danger" role="alert">
+    Sign up failed. Please include a valid email, username & password (longer than 8 characters).
+  </div>
+)}
                 </div>
               </form>
               </div>
