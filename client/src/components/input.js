@@ -57,6 +57,7 @@ function Input() {
         }
         setShowButton(false)
         setCongratsButton(true)
+
     }
 
 
@@ -70,6 +71,10 @@ function Input() {
         const avg = sum / numArr.length;
         setResult({ min, max, avg });
         setShowButton(true);
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+          });
     };
 
 

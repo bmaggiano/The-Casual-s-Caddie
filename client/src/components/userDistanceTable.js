@@ -33,7 +33,7 @@ function UserDistanceTable() {
       }
 
     if (tableData.length === 0) {
-      return <h2 className='contentFont text-center'>You haven't entered any clubs yet</h2>;
+      return <h2 className='contentFont text-center'>You haven't entered any clubs yet...</h2>;
     }
 
 
@@ -41,6 +41,7 @@ function UserDistanceTable() {
   return (
     <div>
       <p className='contentFont text-center'>Here's the most recent data for your clubs.</p>
+      <p className='contentFont text-center text-xs'>(scroll on table to edit distances or delete clubs)</p>
       <div className="px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">

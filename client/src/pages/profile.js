@@ -29,7 +29,7 @@ const Profile = () => {
           <h2 className='contentFont text-center mt-4'>Welcome back {goog?.name || me?.username}!</h2>
           <br/>
           <GoogleUserDistanceTable />
-          <hr/>
+          {/* <hr/> */}
           <AddClub/>
           <br/>
           <br/>
@@ -40,7 +40,7 @@ const Profile = () => {
           <h2 className='contentFont font-bold text-center mt-4'>Welcome back {goog?.name || me?.username}!</h2>
           <br/>
           <UserDistanceTable />
-          <hr/>
+          {/* <hr/> */}
           <AddClub/>
           <br/>
           <br/>
