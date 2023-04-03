@@ -24,12 +24,21 @@ const verifyToken = async (idToken) => {
 
 const resolvers = {
     Query: {
+        // me: async (parent, args, context) => {
+        //     if (context.user) {
+        //         return User.findOne({_id: context.user._id}).populate('club')
+        //     }
+        //     throw new AuthenticationError('You must be logged in')
+        // },
         me: async (parent, args, context) => {
             if (context.user) {
-                return User.findOne({_id: context.user._id}).populate('club')
+              const user = await User.findOne({_id: context.user._id}).populate('clubs');
+              const sortedClubs = user.clubs.sort((a, b) => b.clubAverage - a.clubAverage); // Sort clubs by clubAverage
+              return { ...user._doc, clubs: sortedClubs }; // Return sorted clubs array with other user properties
             }
             throw new AuthenticationError('You must be logged in')
-        },
+          },
+          
         clubs: async (parent, args) => {
             return Club.find()
         },
