@@ -67,6 +67,8 @@ function Input() {
         const numArr = Object.values(numbers);
         const min = Math.min(...numArr);
         const max = Math.max(...numArr);
+        //reducer to find the sum, accumulator inital = 0, current element = cur, parseInt incase its not number
+        //iterate through numArr
         const sum = numArr.reduce((acc, cur) => acc + parseInt(cur), 0);
         const avg = sum / numArr.length;
         setResult({ min, max, avg });

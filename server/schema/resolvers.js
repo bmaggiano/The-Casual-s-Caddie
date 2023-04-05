@@ -24,12 +24,6 @@ const verifyToken = async (idToken) => {
 
 const resolvers = {
     Query: {
-        // me: async (parent, args, context) => {
-        //     if (context.user) {
-        //         return User.findOne({_id: context.user._id}).populate('club')
-        //     }
-        //     throw new AuthenticationError('You must be logged in')
-        // },
         me: async (parent, args, context) => {
             if (context.user) {
               const user = await User.findOne({_id: context.user._id}).populate('clubs');
